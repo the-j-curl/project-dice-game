@@ -5,13 +5,13 @@ type OwnProps = {
   color?: string
   icon?: string
   size?: number
-  onClickEvent: () => number | void
+  onClickFunction: () => number | void
 }
 
 type Props = OwnProps
 
-export const Button = ({ buttonText, onClickEvent }: Props) => {
+export const Button = ({ buttonText, onClickFunction }: Props) => {
   return (
-    <button onClick={() => onClickEvent()}>{buttonText}</button>
+    <button onClick={() => onClickFunction()}>{buttonText}</button>
   );
 };

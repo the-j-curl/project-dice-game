@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export const Dice = () => {
-  const [diceRoll, setDiceRoll] = useState(0)
+  // const [diceRoll, setDiceRoll] = useState(0)
+  const diceRoll = 0;
 
   return (
-    <p>Dice Roll: {diceRoll}</p>
+    <p>Dice Component Roll: {diceRoll}</p>
   );
 };

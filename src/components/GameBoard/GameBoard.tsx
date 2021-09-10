@@ -22,7 +22,7 @@ export const GameBoard = () => {
     <main className={styles.boardWrapper}>
       <p>Game Board</p>
       <Dice />
-      <Button buttonText={diceButton} onClickEvent={() => setDiceRoll(1, 6)} />
+      <Button buttonText={diceButton} onClickFunction={() => setDiceRoll(1, 6)} />
       <p>Random number: {randomNum}</p>
     </main>
   );

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
-import { Button, Dice } from 'components';
+import { Button, Dice, PlayerCard } from 'components';
 import styles from './styles.module.css';
 
 export const GameBoard = () => {
   const [randomNum, setRandomNum] = useState(0)
-  const diceButton = "Roll Dice";
+  const diceButton = "Roll Dice"; // TODO: REMOVE THIS LINE
+  const playerName = 'Player Test'; // TODO: REMOVE THIS LINE
+  const score = 0; // TODO: REMOVE THIS LINE
 
   const randomNumberGenerator = (min: number, max: number) => {
     min = Math.ceil(min);
@@ -21,6 +23,7 @@ export const GameBoard = () => {
   return (
     <main className={styles.boardWrapper}>
       <p>Game Board</p>
+      <PlayerCard playerName={playerName} totalScore={score} />
       <Dice />
       <Button buttonText={diceButton} onClickFunction={() => setDiceRoll(1, 6)} />
       <p>Random number: {randomNum}</p>

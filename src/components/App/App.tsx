@@ -1,10 +1,12 @@
 import React from 'react';
-import styles from './styles.module.css';
+
+import { GameBoard, Header } from 'components';
 
 export const App = () => {
   return (
-    <div className={styles.main}>
-      App
-    </div>
+    <>
+      <Header />
+      <GameBoard />
+    </>
   );
 };

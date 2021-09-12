@@ -1,6 +1,6 @@
 import React from 'react';
 
-type OwnProps = {
+interface ButtonProps {
   buttonText: string
   color?: string
   icon?: string
@@ -8,9 +8,7 @@ type OwnProps = {
   onClickFunction: () => number | void
 }
 
-type Props = OwnProps
-
-export const Button = ({ buttonText, onClickFunction }: Props) => {
+export const Button: React.FC<ButtonProps> = ({ buttonText, onClickFunction }) => {
   return (
     <button onClick={() => onClickFunction()}>{buttonText}</button>
   );

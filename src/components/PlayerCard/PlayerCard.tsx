@@ -2,14 +2,14 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-type OwnProps = {
+type OwnProps = { // TODO: Change this
   playerName: string
   totalScore: number
 }
 
 type Props = OwnProps
 
-export const PlayerCard = ({ playerName, totalScore }: Props) => {
+export const PlayerCard: React.FC<Props> = ({ playerName, totalScore }) => {
   return (
     <section className={styles.cardWrapper}>
       <h2>{playerName}</h2>

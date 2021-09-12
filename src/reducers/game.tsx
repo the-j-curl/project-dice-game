@@ -7,8 +7,9 @@ interface TotalScore {
 interface Game {
   playerOne: string
   playerTwo: string
-  totalScore: TotalScore
   isPlayerOneTurn: boolean
+  isPlayerTwoTurn: boolean
+  totalScore: TotalScore
 }
 
 // interface UpdateNameAction {
@@ -30,11 +31,12 @@ interface Action {
 const initialState: Game = {
   playerOne: 'Player 1',
   playerTwo: 'Player 2',
+  isPlayerOneTurn: true,
+  isPlayerTwoTurn: false,
   totalScore: {
     playerOne: 0,
     playerTwo: 0,
   },
-  isPlayerOneTurn: true,
 };
 
 export const game = createSlice({
@@ -48,18 +50,17 @@ export const game = createSlice({
       localStorage.setItem('playerOne', playerOne);
       localStorage.setItem('playerTwo', playerTwo);
     },
-    updateScore: (store: Game, action: Action) => {
-      const { playerScore } = action.payload;
+    updateScore: (store: any, action: any) => {
       if (store.isPlayerOneTurn) {
-        store.totalScore.playerOne += playerScore;
+        store.totalScore.playerOne = store.totalScore.playerOne + action.payload;
       }
-      if (!store.isPlayerOneTurn) {
-        store.totalScore.playerTwo = store.totalScore.playerTwo + playerScore;
+      if (store.isPlayerTwoTurn) {
+        store.totalScore.playerTwo = store.totalScore.playerTwo + action.payload;
       }
     },
     changeTurn: (store: Game, action: Action) => {
-      const { turn } = action.payload;
-      store.isPlayerOneTurn = turn;
+      store.isPlayerOneTurn = action.payload;
+      store.isPlayerTwoTurn = !action.payload;
     },
   },
 });

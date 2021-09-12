@@ -62,5 +62,8 @@ export const game = createSlice({
       store.isPlayerOneTurn = action.payload;
       store.isPlayerTwoTurn = !action.payload;
     },
+    resetGame: () => {
+      return initialState;
+    },
   },
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 import styles from './styles.module.css';
 
@@ -10,7 +10,7 @@ type Props = { // TODO: Change this
 }
 
 export const PlayerCard: React.FC<Props> = ({ playerName, totalScore, turnScore }) => {
-  const reduxScore = useSelector((store: any) => store.game.totalScore)
+  // const reduxScore = useSelector((store: any) => store.game.totalScore)
   return (
     <section className={styles.cardWrapper}>
       <h2>{playerName}</h2>

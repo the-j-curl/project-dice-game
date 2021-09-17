@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Button, Dice, PlayerCard } from 'components';
+import { Button, Dice, GameRules, PlayerCard } from 'components';
 import { game } from '../../reducers/game'
 import styles from './styles.module.css';
 
@@ -62,8 +62,7 @@ export const GameBoard: React.FC = () => {
   if (playerOneScore <= 99 && playerTwoScore <= 99) {
     return (
       <main className={styles.boardWrapper}>
-        <p>Game Board - First to 100 wins!</p>
-        <p>Inset game rules here</p>
+        <GameRules />
         {/* <PlayerNameForm defaultPlayerName={pl} /> */}
         <PlayerCard
           // playerName={playerOne}
@@ -91,7 +90,7 @@ export const GameBoard: React.FC = () => {
   } else {
     return (
       <main className={styles.boardWrapper}>
-        <p>Congratualtions {playerOneScore > playerTwoScore ? <span>{playerOne}</span> : <span>{playerTwo}</span>}, you won! 🏆</p>
+        <p>Congratualtions {playerOneScore > playerTwoScore ? <span>{playerOne}</span> : <span>{playerTwo}</span>}, you won with {playerOneScore > playerTwoScore ? playerOneScore : playerTwoScore} points! 🏆</p>
         <Button buttonText={NEW_GAME} onClickFunction={() => resetGame()} />
       </main>
     ); // TODO: Create an end of game component

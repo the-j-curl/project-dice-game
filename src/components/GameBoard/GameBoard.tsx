@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Button, Dice, PlayerCard } from 'components';
@@ -6,21 +6,22 @@ import { game } from '../../reducers/game'
 import styles from './styles.module.css';
 
 export const GameBoard: React.FC = () => {
-  const playerOne = useSelector((store: any) => store.game.playerOne); // TODO: import Game type and use here
-  const playerTwo = useSelector((store: any) => store.game.playerTwo); // TODO: import Game type and use here
+  const playerOne = useSelector((store: any) => store.game.playerOneName); // TODO: import Game type and use here
+  const playerTwo = useSelector((store: any) => store.game.playerTwoName); // TODO: import Game type and use here
   const playerOneScore: number = useSelector((store: any) => store.game.totalScore.playerOne); // TODO: import Game type and use here
   const playerTwoScore: number = useSelector((store: any) => store.game.totalScore.playerTwo); // TODO: import Game type and use here
   const isPlayerOneTurn = useSelector((store: any) => store.game.isPlayerOneTurn); // TODO: import Game type and use here
   const isPlayerTwoTurn = useSelector((store: any) => store.game.isPlayerTwoTurn); // TODO: import Game type and use here
+  const player = useRef(null);
   const dispatch = useDispatch();
 
   const [randomNumber, setRandomNumber] = useState(0);
   const [turnScore, setTurnScore] = useState(0);
   const [diceRolls, setDiceRolls] = useState(0);
-  const diceButton = 'Roll Dice'; // TODO: REMOVE THIS LINE
-  const holdButton = 'Hold'; // TODO: Move this to a new file
-  const resetButton = 'Restart Game'; // TODO: Move this to a new file
-  const newGameButton = 'New Game'; // TODO: Move this to a new file
+  const ROLL_DICE = 'Roll Dice'; // TODO: REMOVE THIS LINE
+  const HOLD = 'Hold'; // TODO: Move this to a new file
+  const RESET_GAME = 'Restart Game'; // TODO: Move this to a new file
+  const NEW_GAME = 'New Game'; // TODO: Move this to a new file
 
   useEffect(() => {
     if (randomNumber !== 1) {
@@ -54,7 +55,6 @@ export const GameBoard: React.FC = () => {
 
   const resetGame = () => {
     dispatch(game.actions.resetGame());
-    dispatch(game.actions.changeTurn(!isPlayerOneTurn));
     setTurnScore(0);
     setRandomNumber(0);
   };
@@ -63,31 +63,37 @@ export const GameBoard: React.FC = () => {
     return (
       <main className={styles.boardWrapper}>
         <p>Game Board - First to 100 wins!</p>
+        <p>Inset game rules here</p>
+        {/* <PlayerNameForm defaultPlayerName={pl} /> */}
         <PlayerCard
-          playerName={playerOne}
+          // playerName={playerOne}
+          defaultPlayerName={playerOne}
           totalScore={playerOneScore}
           turnScore={isPlayerOneTurn ? turnScore : 0}
+          ref={player}
         />
         <PlayerCard
-          playerName={playerTwo}
+          // playerName={playerTwo}
+          defaultPlayerName={playerTwo}
           totalScore={playerTwoScore}
           turnScore={isPlayerTwoTurn ? turnScore : 0}
+          ref={player}
         />
-        <Dice />
-        <Button buttonText={diceButton} onClickFunction={() => rollTheDice(1, 6)} />
+        <Dice diceRoll={randomNumber} />
+        <Button buttonText={ROLL_DICE} onClickFunction={() => rollTheDice(1, 6)} />
         <p>Random number: {randomNumber}</p>
         <p>Turn total: {turnScore}</p>
-        <Button buttonText={holdButton} onClickFunction={() => updateTotalScore(turnScore)} />
+        <Button buttonText={HOLD} onClickFunction={() => updateTotalScore(turnScore)} />
         <p>Player turn: {isPlayerOneTurn ? "Player One" : "Player Two"}</p>
-        <Button buttonText={resetButton} onClickFunction={() => resetGame()} />
+        <Button buttonText={RESET_GAME} onClickFunction={() => resetGame()} />
       </main>
     );
   } else {
     return (
       <main className={styles.boardWrapper}>
-        <p>Congratualtions, you won</p>
-        <Button buttonText={newGameButton} onClickFunction={() => resetGame()} />
+        <p>Congratualtions {playerOneScore > playerTwoScore ? <span>{playerOne}</span> : <span>{playerTwo}</span>}, you won! 🏆</p>
+        <Button buttonText={NEW_GAME} onClickFunction={() => resetGame()} />
       </main>
-    ); // TODO: Create a congratutions component
+    ); // TODO: Create an end of game component
   };
 };

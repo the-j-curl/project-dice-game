@@ -5,8 +5,8 @@ interface TotalScore {
   playerTwo?: number
 }
 interface Game {
-  playerOne: string
-  playerTwo: string
+  playerOneName: string
+  playerTwoName: string
   isPlayerOneTurn: boolean
   isPlayerTwoTurn: boolean
   totalScore: TotalScore
@@ -29,8 +29,8 @@ interface Action {
 }
 
 const initialState: Game = {
-  playerOne: 'Player 1',
-  playerTwo: 'Player 2',
+  playerOneName: 'Player 1',
+  playerTwoName: 'Player 2',
   isPlayerOneTurn: true,
   isPlayerTwoTurn: false,
   totalScore: {
@@ -43,10 +43,10 @@ export const game = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    updatePlayerName: (store: Game, action: Action) => {
+    submitPlayerName: (store: Game, action: Action) => {
       const { playerOne, playerTwo } = action.payload;
-      store.playerOne = playerOne;
-      store.playerTwo = playerTwo;
+      store.playerOneName = playerOne;
+      store.playerTwoName = playerTwo;
       localStorage.setItem('playerOne', playerOne);
       localStorage.setItem('playerTwo', playerTwo);
     },

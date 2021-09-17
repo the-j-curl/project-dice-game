@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface ButtonProps {
+type ButtonProps = {
   buttonText: string
   color?: string
   icon?: string

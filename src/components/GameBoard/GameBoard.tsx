@@ -84,7 +84,7 @@ export const GameBoard: React.FC = () => {
         <p>Random number: {randomNumber}</p>
         <p>Turn total: {turnScore}</p>
         <Button buttonText={HOLD} onClickFunction={() => updateTotalScore(turnScore)} />
-        <p>Player turn: {isPlayerOneTurn ? "Player One" : "Player Two"}</p>
+        <p>Turn to roll: {isPlayerOneTurn ? "Player One" : "Player Two"}</p>
         <Button buttonText={RESET_GAME} onClickFunction={() => resetGame()} />
       </main>
     );

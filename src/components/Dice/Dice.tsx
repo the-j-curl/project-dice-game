@@ -7,41 +7,41 @@ type DiceProps = {
 };
 
 export const Dice: React.FC<DiceProps> = ({ diceRoll }) => {
-  const [diceImage, setDiceImage] = useState('');
+  const [diceImageSrc, setDiceImageSrc] = useState('');
 
   useEffect(() => {
     switch (diceRoll) {
       case 1:
-        setDiceImage('dice-one.png');
+        setDiceImageSrc('dice-one.png');
         break;
       case 2:
-        setDiceImage('dice-two.png');
+        setDiceImageSrc('dice-two.png');
         break;
       case 3:
-        setDiceImage('dice-three.png');
+        setDiceImageSrc('dice-three.png');
         break;
       case 4:
-        setDiceImage('dice-four.png');
+        setDiceImageSrc('dice-four.png');
         break;
       case 5:
-        setDiceImage('dice-five.png');
+        setDiceImageSrc('dice-five.png');
         break;
       case 6:
-        setDiceImage('dice-six.png');
+        setDiceImageSrc('dice-six.png');
         break;
       default:
-        setDiceImage('');
+        setDiceImageSrc('');
     };
   }, [diceRoll]);
 
   return (
     <>
       <p>Dice Component Roll: {diceRoll}</p>
-      {diceImage &&
+      {diceImageSrc &&
         <div className={styles.diceWrapper}>
-          <img className={styles.diceImage} src={`/images/${diceImage}`} alt='Dice' />
+          <img className={styles.diceImage} src={`/images/${diceImageSrc}`} alt='Dice' />
         </div>
-      };
+      }
     </>
   );
 };

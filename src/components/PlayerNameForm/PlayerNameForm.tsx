@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { game } from '../../reducers/game';
+import { game } from '../../redux/reducers/game';
 
 type PlayerNameProps = {
   defaultPlayerName: string

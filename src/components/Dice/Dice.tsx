@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import styles from './styles.module.css';
+import './Dice.css';
 
 type DiceProps = {
   diceRoll: number
@@ -38,8 +38,8 @@ export const Dice: React.FC<DiceProps> = ({ diceRoll }) => {
     <>
       <p>Dice Component Roll: {diceRoll}</p>
       {diceImageSrc &&
-        <div className={styles.diceWrapper}>
-          <img className={styles.diceImage} src={`/images/${diceImageSrc}`} alt='Dice' />
+        <div className="diceWrapper">
+          <img className="diceImage" src={`/assets/${diceImageSrc}`} alt='Dice' />
         </div>
       }
     </>

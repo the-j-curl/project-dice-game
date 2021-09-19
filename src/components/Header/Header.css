@@ -1,0 +1,9 @@
+.headerWrapper {
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.titleText {
+  color: white;
+  font-size: 32px; }

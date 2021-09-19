@@ -1,0 +1,9 @@
+.boardWrapper {
+  background: #b3aeae;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  width: 95%; }
+
+.gameBoard {
+  display: flex;
+  border: 1px solid red; }

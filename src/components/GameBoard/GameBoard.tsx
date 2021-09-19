@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Button, Dice, GameRules, PlayerCard } from 'components';
-import { game } from '../../reducers/game'
-import styles from './styles.module.css';
+import { game } from '../../redux/reducers/game'
+import './GameBoard.css';
 
 export const GameBoard: React.FC = () => {
   const playerOne = useSelector((store: any) => store.game.playerOneName); // TODO: import Game type and use here
@@ -61,23 +61,25 @@ export const GameBoard: React.FC = () => {
 
   if (playerOneScore <= 99 && playerTwoScore <= 99) {
     return (
-      <main className={styles.boardWrapper}>
+      <main className="boardWrapper">
         <GameRules />
         {/* <PlayerNameForm defaultPlayerName={pl} /> */}
-        <PlayerCard
-          // playerName={playerOne}
-          defaultPlayerName={playerOne}
-          totalScore={playerOneScore}
-          turnScore={isPlayerOneTurn ? turnScore : 0}
-          ref={player}
-        />
-        <PlayerCard
-          // playerName={playerTwo}
-          defaultPlayerName={playerTwo}
-          totalScore={playerTwoScore}
-          turnScore={isPlayerTwoTurn ? turnScore : 0}
-          ref={player}
-        />
+        <div className="gameBoard">
+          <PlayerCard
+            // playerName={playerOne}
+            defaultPlayerName={playerOne}
+            totalScore={playerOneScore}
+            turnScore={isPlayerOneTurn ? turnScore : 0}
+            ref={player}
+          />
+          <PlayerCard
+            // playerName={playerTwo}
+            defaultPlayerName={playerTwo}
+            totalScore={playerTwoScore}
+            turnScore={isPlayerTwoTurn ? turnScore : 0}
+            ref={player}
+          />
+        </div>
         <Dice diceRoll={randomNumber} />
         <Button buttonText={ROLL_DICE} onClickFunction={() => rollTheDice(1, 6)} />
         <p>Random number: {randomNumber}</p>
@@ -89,7 +91,7 @@ export const GameBoard: React.FC = () => {
     );
   } else {
     return (
-      <main className={styles.boardWrapper}>
+      <main className="boardWrapper">
         <p>Congratualtions {playerOneScore > playerTwoScore ? <span>{playerOne}</span> : <span>{playerTwo}</span>}, you won with {playerOneScore > playerTwoScore ? playerOneScore : playerTwoScore} points! 🏆</p>
         <Button buttonText={NEW_GAME} onClickFunction={() => resetGame()} />
       </main>

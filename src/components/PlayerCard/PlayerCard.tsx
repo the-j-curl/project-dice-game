@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './styles.module.css';
+import './PlayerCard.css';
 
 type Props = { // TODO: Change this
   defaultPlayerName: string
@@ -15,7 +15,7 @@ export const PlayerCard: React.FC<Props> = ({ defaultPlayerName, totalScore, tur
   // console.log('selectPlayerCard', playerTurn)
   // const reduxScore = useSelector((store: any) => store.game.totalScore)
   return (
-    <section className={styles.cardWrapper}>
+    <section className="cardWrapper">
       {/* <input ref={playerTurn} /> */}
       <h2>{defaultPlayerName}</h2>
       <h4>Total: {totalScore}</h4>

@@ -2,10 +2,16 @@ import React from 'react';
 
 import './Header.css'
 
-export const Header = () => {
+type HeaderProps = {
+  title: string
+  logoImage: string
+};
+
+export const Header: React.FC<HeaderProps> = ({ title, logoImage }) => {
   return (
-    <header className="headerWrapper">
-      <h1 className="titleText">Pig Dice Game</h1>
+    <header className='header-container'>
+      <h1 className='title'>{title}</h1>
+      <img className='logo' src={`assets/${logoImage}`} />
     </header>
   );
 };

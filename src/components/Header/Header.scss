@@ -1,11 +1,19 @@
-.headerWrapper {
-  background-color: #000;
+@import '../../../src/styles/_config.scss';
+
+.header-container {
+  background-color: $light-color;
   display: flex;
   align-items: center;
   justify-content: center;
-}
+  padding: 20px 0;
 
-.titleText {
-  color: white;
-  font-size: 32px;
+  .title {
+    color: $dark-color;
+    font-size: 32px;
+    margin-right: 20px;
+  }
+
+  .logo {
+    width: 50px;
+  }
 }

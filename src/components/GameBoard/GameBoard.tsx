@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Button, Dice, GameRules, PlayerCard } from 'components';
 import { game } from '../../redux/reducers/game'
+import { ROLL_DICE, HOLD, RESET_GAME, NEW_GAME } from 'utils/variables';
 import './GameBoard.css';
 
 export const GameBoard: React.FC = () => {
-  const playerOne = useSelector((store: any) => store.game.playerOneName); // TODO: import Game type and use here
+  const playerOne = useSelector((store: any) => store.game.playerOneName); // TODO: import Game type and use here **Create Types file**
   const playerTwo = useSelector((store: any) => store.game.playerTwoName); // TODO: import Game type and use here
   const playerOneScore: number = useSelector((store: any) => store.game.totalScore.playerOne); // TODO: import Game type and use here
   const playerTwoScore: number = useSelector((store: any) => store.game.totalScore.playerTwo); // TODO: import Game type and use here
@@ -18,10 +19,6 @@ export const GameBoard: React.FC = () => {
   const [randomNumber, setRandomNumber] = useState(0);
   const [turnScore, setTurnScore] = useState(0);
   const [diceRolls, setDiceRolls] = useState(0);
-  const ROLL_DICE = 'Roll Dice'; // TODO: REMOVE THIS LINE
-  const HOLD = 'Hold'; // TODO: Move this to a new file
-  const RESET_GAME = 'Restart Game'; // TODO: Move this to a new file
-  const NEW_GAME = 'New Game'; // TODO: Move this to a new file
 
   useEffect(() => {
     if (randomNumber !== 1) {
@@ -61,33 +58,35 @@ export const GameBoard: React.FC = () => {
 
   if (playerOneScore <= 99 && playerTwoScore <= 99) {
     return (
-      <main className="boardWrapper">
-        <GameRules />
-        {/* <PlayerNameForm defaultPlayerName={pl} /> */}
-        <div className="gameBoard">
-          <PlayerCard
-            // playerName={playerOne}
-            defaultPlayerName={playerOne}
-            totalScore={playerOneScore}
-            turnScore={isPlayerOneTurn ? turnScore : 0}
-            ref={player}
-          />
-          <PlayerCard
-            // playerName={playerTwo}
-            defaultPlayerName={playerTwo}
-            totalScore={playerTwoScore}
-            turnScore={isPlayerTwoTurn ? turnScore : 0}
-            ref={player}
-          />
-        </div>
-        <Dice diceRoll={randomNumber} />
-        <Button buttonText={ROLL_DICE} onClickFunction={() => rollTheDice(1, 6)} />
-        <p>Random number: {randomNumber}</p>
-        <p>Turn total: {turnScore}</p>
-        <Button buttonText={HOLD} onClickFunction={() => updateTotalScore(turnScore)} />
-        <p>Turn to roll: {isPlayerOneTurn ? "Player One" : "Player Two"}</p>
-        <Button buttonText={RESET_GAME} onClickFunction={() => resetGame()} />
-      </main>
+      <div className="main-wrapper">
+        <main className="game">
+          {/* <PlayerNameForm defaultPlayerName={pl} /> */}
+          <section className="game-content">
+            <PlayerCard
+              // playerName={playerOne}
+              defaultPlayerName={playerOne}
+              totalScore={playerOneScore}
+              turnScore={isPlayerOneTurn ? turnScore : 0}
+              ref={player}
+            />
+            <section className="game-content-buttons">
+              <Button buttonText={RESET_GAME} onClickFunction={() => resetGame()} />
+              <Button buttonText={ROLL_DICE} onClickFunction={() => rollTheDice(1, 6)} />
+              <Dice diceRoll={randomNumber} />
+              <Button buttonText={HOLD} onClickFunction={() => updateTotalScore(turnScore)} />
+            </section>
+            <PlayerCard
+              // playerName={playerTwo}
+              defaultPlayerName={playerTwo}
+              totalScore={playerTwoScore}
+              turnScore={isPlayerTwoTurn ? turnScore : 0}
+              ref={player}
+            />
+          </section>
+          <p>Turn to roll: {isPlayerOneTurn ? 'Player One' : 'Player Two'}</p>
+          <GameRules />
+        </main>
+      </div>
     );
   } else {
     return (

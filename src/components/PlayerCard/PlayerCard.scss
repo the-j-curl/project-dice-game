@@ -1,4 +1,42 @@
-.cardWrapper {
+@import '../../../src/styles/_config.scss';
+
+.player-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
   border: 1px solid green;
+  text-transform: uppercase;
+  height: 50vh;
   width: 45%;
+  opacity: 0.8;
+
+  .player-name {
+    font-size: 50px;
+    letter-spacing: 1px;
+  }
+
+  .score {
+    font-size: 70px;
+    font-weight: 600;
+  }
+
+  .turn-score {
+    border: 1px solid white;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    width: 40%;
+
+    &-text {
+      font-size: 18px;
+    }
+    &-number {
+      font-size: 35px;
+      font-weight: 600;
+    }
+  }
 }

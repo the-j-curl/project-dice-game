@@ -1,3 +1,8 @@
-.rulesWrapper {
-  border: 1px solid #fff;
+@import '../../../src/styles/_config.scss';
+
+.rules-container {
+  border: 2px solid $dark-color;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 30px 10px 10px 10px;
 }

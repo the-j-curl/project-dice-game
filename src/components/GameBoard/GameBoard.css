@@ -1,20 +1,23 @@
-.main-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 90vh;
-  border: 1px solid white; }
-
 .game {
-  background: rgba(179, 174, 174, 0.8);
   border-radius: 8px;
-  margin: 0 auto;
+  margin: 15px auto 0 auto;
   width: 95%;
-  height: 80%; }
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+  .game-turn {
+    font-size: 18px;
+    text-align: center;
+    margin: 0 0 10px 0; }
+  .game-span {
+    font-weight: 600;
+    text-transform: uppercase; }
   .game-content {
-    display: flex;
-    border: 1px solid red; }
-    .game-content-buttons {
+    display: flex; }
+    .game-content-button-section {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
       border: 1px solid yellow; }

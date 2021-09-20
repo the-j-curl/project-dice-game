@@ -1,15 +1,17 @@
 @import '../../../src/styles/_config.scss';
 
-.player-card {
+%card {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  border: 1px solid green;
+  border: 1px solid white;
+  border-radius: 5%;
+  background: $light-gray-color;
+  opacity: 0.7;
   text-transform: uppercase;
-  height: 50vh;
+  height: 60vh;
   width: 45%;
-  opacity: 0.8;
 
   .player-name {
     font-size: 50px;
@@ -21,14 +23,13 @@
     font-weight: 600;
   }
 
-  .turn-score {
-    border: 1px solid white;
-    background: white;
+  %turn {
+    background: $light-color;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5px;
+    padding: 8px 0;
     width: 40%;
 
     &-text {
@@ -36,7 +37,24 @@
     }
     &-number {
       font-size: 35px;
-      font-weight: 600;
     }
   }
+}
+
+.player-card {
+  @extend %card;
+}
+
+.player-card-selected {
+  @extend %card;
+  opacity: 1;
+}
+
+.turn-score {
+  @extend %turn;
+}
+
+.turn-score-selected {
+  @extend %turn;
+  font-weight: 600;
 }

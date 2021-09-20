@@ -58,35 +58,37 @@ export const GameBoard: React.FC = () => {
 
   if (playerOneScore <= 99 && playerTwoScore <= 99) {
     return (
-      <div className="main-wrapper">
-        <main className="game">
-          {/* <PlayerNameForm defaultPlayerName={pl} /> */}
-          <section className="game-content">
-            <PlayerCard
-              // playerName={playerOne}
-              defaultPlayerName={playerOne}
-              totalScore={playerOneScore}
-              turnScore={isPlayerOneTurn ? turnScore : 0}
-              ref={player}
-            />
-            <section className="game-content-buttons">
-              <Button buttonText={RESET_GAME} onClickFunction={() => resetGame()} />
-              <Button buttonText={ROLL_DICE} onClickFunction={() => rollTheDice(1, 6)} />
-              <Dice diceRoll={randomNumber} />
-              <Button buttonText={HOLD} onClickFunction={() => updateTotalScore(turnScore)} />
-            </section>
-            <PlayerCard
-              // playerName={playerTwo}
-              defaultPlayerName={playerTwo}
-              totalScore={playerTwoScore}
-              turnScore={isPlayerTwoTurn ? turnScore : 0}
-              ref={player}
-            />
+      // <div className="main-wrapper">
+      <main className="game">
+        <p className="game-turn">Turn to roll: <span className="game-span">{isPlayerOneTurn ? 'Player One' : 'Player Two'}</span></p>
+        {/* <PlayerNameForm defaultPlayerName={pl} /> */}
+        <section className="game-content">
+          <PlayerCard
+            // playerName={playerOne}
+            defaultPlayerName={playerOne}
+            totalScore={playerOneScore}
+            turnScore={isPlayerOneTurn ? turnScore : 0}
+            isPlayerTurn={isPlayerOneTurn ? true : false}
+            ref={player}
+          />
+          <section className="game-content-button-section">
+            <Button buttonText={RESET_GAME} onClickFunction={() => resetGame()} />
+            <Button buttonText={ROLL_DICE} onClickFunction={() => rollTheDice(1, 6)} />
+            <Dice diceRoll={randomNumber} />
+            <Button buttonText={HOLD} onClickFunction={() => updateTotalScore(turnScore)} />
           </section>
-          <p>Turn to roll: {isPlayerOneTurn ? 'Player One' : 'Player Two'}</p>
-          <GameRules />
-        </main>
-      </div>
+          <PlayerCard
+            // playerName={playerTwo}
+            defaultPlayerName={playerTwo}
+            totalScore={playerTwoScore}
+            turnScore={isPlayerTwoTurn ? turnScore : 0}
+            isPlayerTurn={!isPlayerOneTurn ? true : false}
+            ref={player}
+          />
+        </section>
+        <GameRules />
+      </main>
+      // </div>
     );
   } else {
     return (
@@ -94,6 +96,6 @@ export const GameBoard: React.FC = () => {
         <p>Congratualtions {playerOneScore > playerTwoScore ? <span>{playerOne}</span> : <span>{playerTwo}</span>}, you won with {playerOneScore > playerTwoScore ? playerOneScore : playerTwoScore} points! 🏆</p>
         <Button buttonText={NEW_GAME} onClickFunction={() => resetGame()} />
       </main>
-    ); // TODO: Create an end of game component
+    ); // TODO: Create an end of game (EndGame) component
   };
 };

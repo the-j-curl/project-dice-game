@@ -1,30 +1,32 @@
-.player-card {
+.player-card, .player-card-selected {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  border: 1px solid green;
+  border: 1px solid white;
+  border-radius: 5%;
+  background: #b3aeae;
+  opacity: 0.7;
   text-transform: uppercase;
-  height: 50vh;
-  width: 45%;
-  opacity: 0.8; }
-  .player-card .player-name {
+  height: 60vh;
+  width: 45%; }
+  .player-card .player-name, .player-card-selected .player-name {
     font-size: 50px;
     letter-spacing: 1px; }
-  .player-card .score {
+  .player-card .score, .player-card-selected .score {
     font-size: 70px;
     font-weight: 600; }
-  .player-card .turn-score {
-    border: 1px solid white;
-    background: white;
+  .player-card .turn-score, .player-card-selected .turn-score, .player-card .turn-score-selected, .player-card-selected .turn-score-selected {
+    background: #fdf7f7;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5px;
+    padding: 8px 0;
     width: 40%; }
-    .player-card .turn-score-text {
-      font-size: 18px; }
-    .player-card .turn-score-number {
-      font-size: 35px;
-      font-weight: 600; }
+
+.player-card-selected {
+  opacity: 1; }
+
+.turn-score-selected {
+  font-weight: 600; }

@@ -1,0 +1,20 @@
+@import '../../../src/styles/_config.scss';
+
+.game-button {
+  border: none;
+  height: 40px;
+  width: 120px;
+  background: $dark-color;
+  color: $light-color;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: lowercase;
+
+  &:hover {
+    cursor: pointer;
+    background: $light-color;
+    border: 3px solid $dark-color;
+    color: $dark-color;
+    transition: all 0.3s ease-in;
+  }
+}

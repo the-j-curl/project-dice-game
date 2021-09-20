@@ -1,0 +1,15 @@
+.game-button {
+  border: none;
+  height: 40px;
+  width: 120px;
+  background: #111010;
+  color: #fdf7f7;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: lowercase; }
+  .game-button:hover {
+    cursor: pointer;
+    background: #fdf7f7;
+    border: 3px solid #111010;
+    color: #111010;
+    transition: all 0.3s ease-in; }

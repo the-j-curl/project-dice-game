@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Button.css';
+
 type ButtonProps = {
   buttonText: string
   color?: string
@@ -10,6 +12,6 @@ type ButtonProps = {
 
 export const Button: React.FC<ButtonProps> = ({ buttonText, onClickFunction }) => {
   return (
-    <button onClick={() => onClickFunction()}>{buttonText}</button>
+    <button className="game-button" onClick={() => onClickFunction()}>{buttonText}</button>
   );
 };

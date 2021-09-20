@@ -1,8 +1,10 @@
-.diceWrapper {
-  background: #fff;
+@import '../../../src/styles/_config.scss';
+
+.dice-wrapper {
+  background: $light-color;
 }
 
-.diceImage {
+.dice-image {
   width: 100px;
   height: 100px;
 }

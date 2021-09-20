@@ -7,12 +7,12 @@ type DiceProps = {
 };
 
 export const Dice: React.FC<DiceProps> = ({ diceRoll }) => {
-  const [diceImageSrc, setDiceImageSrc] = useState('');
+  const [diceImageSrc, setDiceImageSrc] = useState<string>(''); // TODO: maybe create custom type?
 
   useEffect(() => {
     switch (diceRoll) {
       case 1:
-        setDiceImageSrc('dice-one.png');
+        setDiceImageSrc('dice-one.png'); // TODO: create variables for img names
         break;
       case 2:
         setDiceImageSrc('dice-two.png');
@@ -30,18 +30,15 @@ export const Dice: React.FC<DiceProps> = ({ diceRoll }) => {
         setDiceImageSrc('dice-six.png');
         break;
       default:
-        setDiceImageSrc('');
+        setDiceImageSrc('question-mark.png');
     };
   }, [diceRoll]);
 
   return (
     <>
-      <p>Dice Component Roll: {diceRoll}</p>
-      {diceImageSrc &&
-        <div className="diceWrapper">
-          <img className="diceImage" src={`/assets/${diceImageSrc}`} alt='Dice' />
-        </div>
-      }
+      <div className="dice-wrapper">
+        <img className="dice-image" src={`/assets/${diceImageSrc}`} alt='Dice' />
+      </div>
     </>
   );
 };

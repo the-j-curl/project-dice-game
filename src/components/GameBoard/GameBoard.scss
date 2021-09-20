@@ -22,6 +22,7 @@
 
   &-content {
     display: flex;
+    justify-content: space-evenly;
 
     &-button-section {
       display: flex;
@@ -29,6 +30,7 @@
       align-items: center;
       justify-content: space-around;
       border: 1px solid yellow;
+      width: 10%;
     }
   }
 }

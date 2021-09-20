@@ -14,10 +14,12 @@
     font-weight: 600;
     text-transform: uppercase; }
   .game-content {
-    display: flex; }
+    display: flex;
+    justify-content: space-evenly; }
     .game-content-button-section {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-around;
-      border: 1px solid yellow; }
+      border: 1px solid yellow;
+      width: 10%; }

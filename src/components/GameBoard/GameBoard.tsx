@@ -6,6 +6,14 @@ import { game } from '../../redux/reducers/game'
 import { ROLL_DICE, HOLD, RESET_GAME, NEW_GAME } from 'utils/variables';
 import './GameBoard.css';
 
+interface WinnerData {
+  winner: {
+    name: string
+    score: number
+    turns: number
+  };
+};
+
 export const GameBoard: React.FC = () => {
   const playerOne = useSelector((store: any) => store.game.playerOneName); // TODO: import Game type and use here **Create Types file**
   const playerTwo = useSelector((store: any) => store.game.playerTwoName); // TODO: import Game type and use here
@@ -20,7 +28,14 @@ export const GameBoard: React.FC = () => {
   const [turnScore, setTurnScore] = useState<number>(0);
   const [diceRolls, setDiceRolls] = useState<number>(0);
   const [turnCount, setTurnCount] = useState<number>(0);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [winner, setWinner] = useState<WinnerData>({
+    winner: {
+      name: '',
+      score: 0,
+      turns: 0
+    }
+  });
 
   useEffect(() => {
     if (randomNumber !== 1) {
@@ -36,11 +51,29 @@ export const GameBoard: React.FC = () => {
 
   useEffect(() => {
     if (playerOneScore <= 99 && playerTwoScore <= 99 && isPlayerOneTurn) {
-
       setTurnCount(turnCount + 1)
-
     } if (playerOneScore >= 100 || playerTwoScore >= 100) {
-      setTurnCount(0)
+      setIsModalOpen(true);
+      if (playerOneScore > playerTwoScore) {
+        setWinner({
+          winner: {
+            name: playerOne,
+            score: playerOneScore,
+            turns: turnCount
+          }
+        })
+
+      } else {
+        setIsModalOpen(true);
+        setWinner({
+          winner: {
+            name: playerTwo,
+            score: playerTwoScore,
+            turns: turnCount
+          }
+        })
+
+      }
     }
   }, [isPlayerOneTurn]);
 
@@ -66,54 +99,50 @@ export const GameBoard: React.FC = () => {
     dispatch(game.actions.resetGame());
     setTurnScore(0);
     setRandomNumber(0);
-    setTurnCount(0);
+    setTurnCount(1);
+    setIsModalOpen(false);
+    setWinner({
+      winner: {
+        name: '',
+        score: 0,
+        turns: 0
+      }
+    })
   };
 
-  if (playerOneScore <= 99 && playerTwoScore <= 99) {
-    return (
-      // <div className="main-wrapper">
-      <main className="game">
-        <p className="game-turn">Turn to roll: <span className="game-span">{isPlayerOneTurn ? 'Player One' : 'Player Two'}</span> - Turn number: <span className="game-span">{turnCount}</span></p>
-        {/* <PlayerNameForm defaultPlayerName={pl} /> */}
-        <section className="game-content">
-          <PlayerCard
-            // playerName={playerOne}
-            defaultPlayerName={playerOne}
-            totalScore={playerOneScore}
-            turnScore={isPlayerOneTurn ? turnScore : 0}
-            isPlayerTurn={isPlayerOneTurn ? true : false}
-            ref={player}
-          />
-          <section className="game-content-button-section">
-            <Button buttonText={RESET_GAME} onClickFunction={() => resetGame()} />
-            <Button buttonText={ROLL_DICE} onClickFunction={() => rollTheDice(1, 6)} />
-            <Dice diceRoll={randomNumber} />
-            <Button buttonText={HOLD} onClickFunction={() => updateTotalScore(turnScore)} />
-          </section>
-          <PlayerCard
-            // playerName={playerTwo}
-            defaultPlayerName={playerTwo}
-            totalScore={playerTwoScore}
-            turnScore={isPlayerTwoTurn ? turnScore : 0}
-            isPlayerTurn={!isPlayerOneTurn ? true : false}
-            ref={player}
-          />
+  return (
+    <main className="game">
+      <p className="game-turn">Turn to roll: <span className="game-span">{isPlayerOneTurn ? 'Player One' : 'Player Two'}</span> - Turn number: <span className="game-span">{turnCount}</span></p>
+      {/* <PlayerNameForm defaultPlayerName={pl} /> */}
+      <section className="game-content">
+        <PlayerCard
+          // playerName={playerOne} TODO: future feature
+          defaultPlayerName={playerOne}
+          totalScore={playerOneScore}
+          turnScore={isPlayerOneTurn ? turnScore : 0}
+          isPlayerTurn={isPlayerOneTurn ? true : false}
+          ref={player}
+        />
+        <section className="game-content-button-section">
+          <Button buttonText={RESET_GAME} onClickFunction={() => resetGame()} />
+          <Button buttonText={ROLL_DICE} onClickFunction={() => rollTheDice(1, 6)} />
+          <Dice diceRoll={randomNumber} />
+          <Button buttonText={HOLD} onClickFunction={() => updateTotalScore(turnScore)} />
         </section>
-        <button onClick={() => setIsOpen(!isOpen)}>Modal</button>
-        <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-          This is the Modal
-        </Modal>
-        <GameRules />
-
-      </main>
-      // </div>
-    );
-  } else {
-    return (
-      <main className="boardWrapper">
-        <p>Congratualtions {playerOneScore > playerTwoScore ? <span>{playerOne}</span> : <span>{playerTwo}</span>}, you won with {playerOneScore > playerTwoScore ? playerOneScore : playerTwoScore} points! 🏆</p>
-        <Button buttonText={NEW_GAME} onClickFunction={() => resetGame()} />
-      </main>
-    ); // TODO: Create an end of game (EndGame) component
-  };
+        <PlayerCard
+          // playerName={playerTwo} TODO: future feature
+          defaultPlayerName={playerTwo}
+          totalScore={playerTwoScore}
+          turnScore={isPlayerTwoTurn ? turnScore : 0}
+          isPlayerTurn={!isPlayerOneTurn ? true : false}
+          ref={player}
+        />
+      </section>
+      {/* <button onClick={() => setIsModalOpen(!isModalOpen)}>Modal</button> */}
+      <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)} onButtonClick={resetGame}>
+        Congratualtions {winner.winner.name}, you won in {winner.winner.turns} turns and scored {winner.winner.score} points! 🏆
+      </Modal>
+      <GameRules />
+    </main>
+  );
 };

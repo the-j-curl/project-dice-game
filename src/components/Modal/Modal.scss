@@ -1,13 +1,46 @@
 @import '../../../src/styles/_config.scss';
 
+.modal-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  position: relative;
+  padding: 10px;
+
+  .modal-content {
+    font-size: 20px;
+  }
+}
+
 .modal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: $light-color;
-  padding: 50px;
+  width: 20%;
   z-index: 1000;
+  width: 50%;
+  height: 50%;
+
+  &-close-btn {
+    border: none;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+
+    &-icon {
+      font-size: 25px;
+      color: $dark-color;
+      &:hover {
+        color: $dark-gray-color;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .overlay {

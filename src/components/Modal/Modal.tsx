@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import { CgCloseR } from 'react-icons/cg';
 
 
 import { Button } from 'components';
@@ -8,11 +9,12 @@ import './Modal.css';
 
 type ModalProps = {
   open: boolean
-  children: string
+  children: any
   onClose: () => any
+  onButtonClick: () => void
 };
 
-export const Modal: React.FC<ModalProps> = ({ open, children, onClose }) => {
+export const Modal: React.FC<ModalProps> = ({ open, children, onClose, onButtonClick }) => {
   if (!open) {
     return null;
   };
@@ -20,8 +22,13 @@ export const Modal: React.FC<ModalProps> = ({ open, children, onClose }) => {
     <>
       <div className="overlay">
         <div className="modal">
-          <p>{children}ffff</p>
-          <Button buttonText={NEW_GAME} onClickFunction={onClose} />
+          <div className="modal-container">
+            <button className="modal-close-btn" onClick={onClose} >
+              <CgCloseR className="modal-close-btn-icon" />
+            </button>
+            <p className="modal-content">{children}</p>
+            <Button buttonText={NEW_GAME} onClickFunction={() => onButtonClick()} />
+          </div>
         </div>
       </div>
     </>, document.getElementById('portal') as HTMLElement);

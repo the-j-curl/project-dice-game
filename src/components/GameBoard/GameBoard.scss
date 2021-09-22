@@ -16,11 +16,6 @@
     margin: 0 0 10px 0;
   }
 
-  &-span {
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-
   &-content {
     display: flex;
     justify-content: space-evenly;
@@ -30,7 +25,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-around;
-      border: 1px solid yellow;
       width: 10%;
     }
   }

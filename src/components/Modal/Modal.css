@@ -1,11 +1,36 @@
+.modal-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  position: relative;
+  padding: 10px; }
+  .modal-container .modal-content {
+    font-size: 20px; }
+
 .modal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fdf7f7;
-  padding: 50px;
-  z-index: 1000; }
+  width: 20%;
+  z-index: 1000;
+  width: 50%;
+  height: 50%; }
+  .modal-close-btn {
+    border: none;
+    position: absolute;
+    left: 5px;
+    top: 5px; }
+    .modal-close-btn-icon {
+      font-size: 25px;
+      color: #111010; }
+      .modal-close-btn-icon:hover {
+        color: #686464;
+        cursor: pointer; }
 
 .overlay {
   position: fixed;

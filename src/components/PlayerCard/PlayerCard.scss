@@ -13,6 +13,9 @@
   max-height: 600px;
   width: 45%;
   max-width: 600px;
+  // box-shadow: 0 2.1rem 2rem rgb(0 0 0 / 40%);
+  // box-shadow: 5px 5px 15px 5px rgb(0 0 0 / 40%);
+  box-shadow: $box-shadow;
 
   .player-name {
     font-size: 50px;
@@ -30,15 +33,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 8px 0;
+    padding: 15px 0;
     width: 40%;
-
-    &-text {
-      font-size: 18px;
-    }
-    &-number {
-      font-size: 35px;
-    }
   }
 }
 
@@ -53,6 +49,14 @@
 
 .turn-score {
   @extend %turn;
+
+  &-text {
+    font-size: 20px;
+    letter-spacing: 0.8px;
+  }
+  &-number {
+    font-size: 22px; // TODO: fix this - size change not working
+  }
 }
 
 .turn-score-selected {

@@ -5,7 +5,8 @@
   height: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; }
+  justify-content: space-between;
+  z-index: 1; }
   .game-turn {
     font-size: 18px;
     text-align: center;

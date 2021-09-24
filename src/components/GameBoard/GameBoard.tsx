@@ -112,7 +112,7 @@ export const GameBoard: React.FC = () => {
 
   return (
     <main className="game">
-      <p className="game-turn">Turn to roll: <span className="game-span">{isPlayerOneTurn ? 'Player One' : 'Player Two'}</span> - Turn number: <span className="game-span">{turnCount}</span></p>
+      <p className="game-turn">Turn to roll: <span>{isPlayerOneTurn ? 'Player One' : 'Player Two'}</span> - Turn number: <span className="game-span">{turnCount}</span></p>
       {/* <PlayerNameForm defaultPlayerName={pl} /> */}
       <section className="game-content">
         <PlayerCard
@@ -124,10 +124,10 @@ export const GameBoard: React.FC = () => {
           ref={player}
         />
         <section className="game-content-button-section">
-          <Button buttonText={RESET_GAME} onClickFunction={() => resetGame()} />
-          <Button buttonText={ROLL_DICE} onClickFunction={() => rollTheDice(1, 6)} />
+          <Button buttonType="button" buttonText={RESET_GAME} onClickFunction={() => resetGame()} />
+          <Button buttonType="button" buttonText={ROLL_DICE} onClickFunction={() => rollTheDice(1, 6)} />
           <Dice diceRoll={randomNumber} />
-          <Button buttonText={HOLD} onClickFunction={() => updateTotalScore(turnScore)} />
+          <Button buttonType="button" buttonText={HOLD} onClickFunction={() => updateTotalScore(turnScore)} />
         </section>
         <PlayerCard
           // playerName={playerTwo} TODO: future feature

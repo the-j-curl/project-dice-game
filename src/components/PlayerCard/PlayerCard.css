@@ -3,39 +3,66 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  border-radius: 5%;
-  background: #b3aeae;
+  border-radius: 10px;
+  background-color: #b3aeae;
   opacity: 0.5;
   text-transform: uppercase;
-  height: 60vh;
-  max-height: 600px;
-  width: 45%;
-  max-width: 600px;
-  box-shadow: 0 5px 20px 5px rgba(0, 0, 0, 0.75); }
+  height: 240px;
+  width: 80%;
+  max-width: 400px;
+  margin: 20px 0; }
+  @media (min-width: 768px) {
+    .player-card, .player-card-selected {
+      height: 300px;
+      width: 40%;
+      max-width: 300px; } }
+  @media (min-width: 1024px) {
+    .player-card, .player-card-selected {
+      box-shadow: 0 5px 20px 5px rgba(0, 0, 0, 0.75);
+      width: 45%;
+      max-width: 600px;
+      height: 60vh;
+      max-height: 550px;
+      margin: 0; } }
   .player-card .player-name, .player-card-selected .player-name {
-    font-size: 50px;
+    font-size: 35px;
     letter-spacing: 1px; }
+    @media (min-width: 1024px) {
+      .player-card .player-name, .player-card-selected .player-name {
+        font-size: 50px; } }
   .player-card .score, .player-card-selected .score {
-    font-size: 70px;
+    font-size: 50px;
     font-weight: 600; }
+    @media (min-width: 1024px) {
+      .player-card .score, .player-card-selected .score {
+        font-size: 70px; } }
   .player-card .turn-score, .player-card-selected .turn-score, .player-card .turn-score-selected, .player-card-selected .turn-score-selected {
-    background: #fdf7f7;
+    background-color: #fdf7f7;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px 0;
-    width: 40%; }
+    padding: 5px 0;
+    width: 60%; }
+    @media (min-width: 1024px) {
+      .player-card .turn-score, .player-card-selected .turn-score, .player-card .turn-score-selected, .player-card-selected .turn-score-selected {
+        padding: 15px 0; } }
 
 .player-card-selected {
   opacity: 1; }
 
 .turn-score-text {
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 0.8px; }
+  @media (min-width: 768px) {
+    .turn-score-text {
+      font-size: 20px; } }
 
 .turn-score-number {
-  font-size: 22px; }
+  font-size: 20px; }
+  @media (min-width: 768px) {
+    .turn-score-number {
+      font-size: 22px; } }
 
 .turn-score-selected {
   font-weight: 600; }

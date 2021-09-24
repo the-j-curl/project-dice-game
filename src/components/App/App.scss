@@ -9,8 +9,15 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: $light-color;
+  background-color: $light-color;
   font-family: $font-stack;
-  min-height: 100vh;
-  overflow: hidden;
+
+  @media (min-width: $tablet-width) {
+    min-height: 100vh;
+    overflow: hidden;
+  }
+}
+
+span {
+  font-weight: 600;
 }

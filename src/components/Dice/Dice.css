@@ -1,6 +1,15 @@
 .dice-wrapper {
-  background: #fdf7f7; }
+  background-color: #fdf7f7;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0; }
 
 .dice-image {
-  width: 100px;
-  height: 100px; }
+  width: 80px;
+  height: 80px; }
+  @media (min-width: 768px) {
+    .dice-image {
+      width: 100px;
+      height: 100px; } }

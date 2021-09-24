@@ -5,36 +5,60 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  border-radius: 5%;
-  background: $light-gray-color;
+  border-radius: $border-radius;
+  background-color: $light-gray-color;
   opacity: 0.5;
   text-transform: uppercase;
-  height: 60vh;
-  max-height: 600px;
-  width: 45%;
-  max-width: 600px;
-  // box-shadow: 0 2.1rem 2rem rgb(0 0 0 / 40%);
-  // box-shadow: 5px 5px 15px 5px rgb(0 0 0 / 40%);
-  box-shadow: $box-shadow;
+  height: 240px;
+  width: 80%;
+  max-width: 400px;
+  margin: 20px 0;
+
+  @media (min-width: $tablet-width) {
+    height: 300px;
+    width: 40%;
+    max-width: 300px;
+  }
+
+  @media (min-width: $desktop-width) {
+    box-shadow: $box-shadow;
+    width: 45%;
+    max-width: 600px;
+    height: 60vh;
+    max-height: 550px;
+    margin: 0;
+  }
 
   .player-name {
-    font-size: 50px;
+    font-size: 35px;
     letter-spacing: 1px;
+
+    @media (min-width: $desktop-width) {
+      font-size: 50px;
+    }
   }
 
   .score {
-    font-size: 70px;
+    font-size: 50px;
     font-weight: 600;
+
+    @media (min-width: $desktop-width) {
+      font-size: 70px;
+    }
   }
 
   %turn {
-    background: $light-color;
-    border-radius: 10px;
+    background-color: $light-color;
+    border-radius: $border-radius;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px 0;
-    width: 40%;
+    padding: 5px 0;
+    width: 60%;
+
+    @media (min-width: $desktop-width) {
+      padding: 15px 0;
+    }
   }
 }
 
@@ -51,11 +75,19 @@
   @extend %turn;
 
   &-text {
-    font-size: 20px;
+    font-size: 18px;
     letter-spacing: 0.8px;
+
+    @media (min-width: $tablet-width) {
+      font-size: 20px;
+    }
   }
   &-number {
-    font-size: 22px; // TODO: fix this - size change not working
+    font-size: 20px;
+
+    @media (min-width: $tablet-width) {
+      font-size: 22px;
+    }
   }
 }
 

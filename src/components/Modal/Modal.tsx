@@ -27,7 +27,7 @@ export const Modal: React.FC<ModalProps> = ({ open, children, onClose, onButtonC
               <CgCloseR className="modal-close-btn-icon" />
             </button>
             <p className="modal-content">{children}</p>
-            <Button buttonText={NEW_GAME} onClickFunction={() => onButtonClick()} />
+            <Button buttonType="button" buttonText={NEW_GAME} onClickFunction={() => onButtonClick()} />
           </div>
         </div>
       </div>

@@ -139,8 +139,8 @@ export const GameBoard: React.FC = () => {
         />
       </section>
       {/* <button onClick={() => setIsModalOpen(!isModalOpen)}>Modal</button> */}
-      <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)} onButtonClick={resetGame}>
-        Congratualtions {winner.winner.name}, you won in {winner.winner.turns} turns and scored {winner.winner.score} points! 🏆
+      <Modal open={isModalOpen} onClose={resetGame} onButtonClick={resetGame}>
+        Congratualtions {winner.winner.name}! You won in {winner.winner.turns} turns and scored {winner.winner.score} points! 🏆
       </Modal>
       <GameRules />
     </main>

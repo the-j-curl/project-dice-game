@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import { DICE_ONE, DICE_TWO, DICE_THREE, DICE_FOUR, DICE_FIVE, DICE_SIX, QUESTION_MARK } from '../../utils/variables';
 import './Dice.css';
 
 type DiceProps = {
@@ -12,25 +13,25 @@ export const Dice: React.FC<DiceProps> = ({ diceRoll }) => {
   useEffect(() => {
     switch (diceRoll) {
       case 1:
-        setDiceImageSrc('dice-one.png'); // TODO: create variables for img names
+        setDiceImageSrc(DICE_ONE);
         break;
       case 2:
-        setDiceImageSrc('dice-two.png');
+        setDiceImageSrc(DICE_TWO);
         break;
       case 3:
-        setDiceImageSrc('dice-three.png');
+        setDiceImageSrc(DICE_THREE);
         break;
       case 4:
-        setDiceImageSrc('dice-four.png');
+        setDiceImageSrc(DICE_FOUR);
         break;
       case 5:
-        setDiceImageSrc('dice-five.png');
+        setDiceImageSrc(DICE_FIVE);
         break;
       case 6:
-        setDiceImageSrc('dice-six.png');
+        setDiceImageSrc(DICE_SIX);
         break;
       default:
-        setDiceImageSrc('question-mark.png');
+        setDiceImageSrc(QUESTION_MARK);
     };
   }, [diceRoll]);
 

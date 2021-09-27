@@ -4,7 +4,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import { GameBoard, Header } from 'components';
 import { game } from '../../redux/reducers/game';
-import { headerTitle, lightLogo, darkLogo, blueLogo, darkBlueLogo, orangeLogo } from '../../utils/variables';
+import { headerTitle, darkBlueLogo } from '../../utils/variables';
 import './App.css'
 
 const reducer = combineReducers({
@@ -15,10 +15,8 @@ const store = configureStore({ reducer });
 export const App: React.FC = () => {
   return (
     <Provider store={store}>
-      {/* <div className='container'> */}
       <Header title={headerTitle} logoImage={darkBlueLogo} />
       <GameBoard />
-      {/* </div> */}
     </Provider>
   );
 };

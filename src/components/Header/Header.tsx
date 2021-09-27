@@ -11,7 +11,7 @@ export const Header: React.FC<HeaderProps> = ({ title, logoImage }) => {
   return (
     <header className="header-container">
       <h1 className="title">{title}</h1>
-      <img className="logo" src={`assets/${logoImage}`} />
+      <img className="logo" src={`assets/${logoImage}`} alt="Two Dice Logo" />
     </header>
   );
 };

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { GameBoard } from "components";
 
 interface TotalScore {
   playerOne?: number
@@ -9,21 +10,9 @@ interface Game {
   playerTwoName: string
   isPlayerOneTurn: boolean
   isPlayerTwoTurn: boolean
+  isRulesOpen: boolean
   totalScore: TotalScore
 }
-
-// interface UpdateNameAction {
-//   payload: string
-// }
-
-// interface ScoreAction {
-//   payload: number
-// }
-
-// interface TurnAction {
-//   payload: boolean
-// }
-
 interface Action {
   payload: any
 }
@@ -33,6 +22,7 @@ const initialState: Game = {
   playerTwoName: 'Player 2',
   isPlayerOneTurn: true,
   isPlayerTwoTurn: false,
+  isRulesOpen: false,
   totalScore: {
     playerOne: 0,
     playerTwo: 0,
@@ -61,6 +51,9 @@ export const game = createSlice({
     changeTurn: (store: Game, action: Action) => {
       store.isPlayerOneTurn = action.payload;
       store.isPlayerTwoTurn = !action.payload;
+    },
+    changeShowRules: (store: Game, action: Action) => {
+      store.isRulesOpen = action.payload;
     },
     resetGame: () => {
       return initialState;

@@ -20,6 +20,8 @@ export const ROLL_DICE = 'Roll Dice';
 export const HOLD = 'Hold';
 export const RESET_GAME = 'Restart Game';
 export const NEW_GAME = 'New Game';
+export const CLOSE = 'Close';
+export const SHOW_RULES = 'Show Rules';
 
 // Game Rules
 export const GAME_RULES =

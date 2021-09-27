@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Button, Dice, GameRules, PlayerCard, Modal } from 'components';
 import { game } from '../../redux/reducers/game'
-import { ROLL_DICE, HOLD, RESET_GAME, NEW_GAME } from 'utils/variables';
+import { ROLL_DICE, HOLD, RESET_GAME, NEW_GAME, SHOW_RULES } from 'utils/variables';
 import './GameBoard.css';
 
 interface WinnerData {
@@ -21,6 +21,7 @@ export const GameBoard: React.FC = () => {
   const playerTwoScore: number = useSelector((store: any) => store.game.totalScore.playerTwo); // TODO: import Game type and use here
   const isPlayerOneTurn: boolean = useSelector((store: any) => store.game.isPlayerOneTurn); // TODO: import Game type and use here
   const isPlayerTwoTurn = useSelector((store: any) => store.game.isPlayerTwoTurn); // TODO: import Game type and use here
+  const isRulesOpen = useSelector((store: any) => store.game.isRulesOpen); // TODO: import Game type and use here
   const player = useRef(null);
   const dispatch = useDispatch();
 
@@ -75,6 +76,7 @@ export const GameBoard: React.FC = () => {
 
       }
     }
+    // eslint-disable-next-line
   }, [isPlayerOneTurn]);
 
   const randomNumberGenerator = (min: number, max: number) => { // TODO: move to helper folder
@@ -110,8 +112,13 @@ export const GameBoard: React.FC = () => {
     })
   };
 
+  const handleSetRules = () => {
+    dispatch(game.actions.changeShowRules(!isRulesOpen));
+  };
+
   return (
     <main className="game">
+      {isRulesOpen ? <GameRules /> : null}
       <p className="game-turn">Turn to roll: <span>{isPlayerOneTurn ? 'Player One' : 'Player Two'}</span> - Turn number: <span className="game-span">{turnCount}</span></p>
       {/* <PlayerNameForm defaultPlayerName={pl} /> */}
       <section className="game-content">
@@ -139,10 +146,10 @@ export const GameBoard: React.FC = () => {
         />
       </section>
       {/* <button onClick={() => setIsModalOpen(!isModalOpen)}>Modal</button> */}
-      <Modal open={isModalOpen} onClose={resetGame} onButtonClick={resetGame}>
+      <Modal open={isModalOpen} onClose={resetGame} buttonText={NEW_GAME} onButtonClick={resetGame}>
         Congratualtions {winner.winner.name}! You won in {winner.winner.turns} turns and scored {winner.winner.score} points! 🏆
       </Modal>
-      <GameRules />
+      <Button buttonType="button" buttonText={SHOW_RULES} onClickFunction={() => handleSetRules()} />
     </main>
   );
 };

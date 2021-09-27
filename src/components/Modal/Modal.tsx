@@ -2,19 +2,18 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { CgCloseR } from 'react-icons/cg';
 
-
 import { Button } from 'components';
-import { NEW_GAME } from '../../utils/variables';
 import './Modal.css';
 
 type ModalProps = {
   open: boolean
   children: any
   onClose: () => any
-  onButtonClick: () => void
+  buttonText: string
+  onButtonClick?: () => void
 };
 
-export const Modal: React.FC<ModalProps> = ({ open, children, onClose, onButtonClick }) => {
+export const Modal: React.FC<ModalProps> = ({ open, children, onClose, buttonText, onButtonClick = onClose }) => {
   if (!open) {
     return null;
   };
@@ -27,7 +26,7 @@ export const Modal: React.FC<ModalProps> = ({ open, children, onClose, onButtonC
               <CgCloseR className="modal-close-btn-icon" />
             </button>
             <p className="modal-content">{children}</p>
-            <Button buttonType="button" buttonText={NEW_GAME} onClickFunction={() => onButtonClick()} />
+            <Button buttonType="button" buttonText={buttonText} onClickFunction={() => onButtonClick()} />
           </div>
         </div>
       </div>

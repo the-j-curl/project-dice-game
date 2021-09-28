@@ -11,24 +11,24 @@ type ButtonProps = {
   onClickFunction: () => number | void
 }
 
-const STYLES = [
-  "btn--primary--solid",
-  "btn--warning--solid",
-  "btn--danger--solid",
-  "btn--success--solid",
-  "btn--primary--outline",
-  "btn--warning--outline",
-  "btn--danger--outline",
-  "btn--success--outline",
+// const STYLES = [
+//   "btn--primary--solid",
+//   "btn--warning--solid",
+//   "btn--danger--solid",
+//   "btn--success--solid",
+//   "btn--primary--outline",
+//   "btn--warning--outline",
+//   "btn--danger--outline",
+//   "btn--success--outline",
 
-];
+// ];
 
-const SIZE = ["btn--medium", "btn--small"];
+// const SIZE = ["btn--medium", "btn--small"];
 
 export const Button: React.FC<ButtonProps> = ({ buttonText, buttonType, onClickFunction, color, buttonStyle, buttonSize }) => {
 
-  const checkButtonStyle = buttonStyle && STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0];
-  const checkButtonSize = buttonSize && SIZE.includes(buttonSize) ? buttonSize : SIZE[0];
+  // const checkButtonStyle = buttonStyle && STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0];
+  // const checkButtonSize = buttonSize && SIZE.includes(buttonSize) ? buttonSize : SIZE[0];
 
   return (
     // <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} type={buttonType} onClick={() => onClickFunction()}>{buttonText}</button>

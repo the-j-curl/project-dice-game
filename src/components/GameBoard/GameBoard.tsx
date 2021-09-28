@@ -120,7 +120,6 @@ export const GameBoard: React.FC = () => {
     <main className="game">
       {isRulesOpen ? <GameRules /> : null}
       <p className="game-turn">Turn to roll: <span>{isPlayerOneTurn ? 'Player One' : 'Player Two'}</span> - Turn number: <span className="game-span">{turnCount}</span></p>
-      {/* <PlayerNameForm defaultPlayerName={pl} /> */}
       <section className="game-content">
         <PlayerCard
           // playerName={playerOne} TODO: future feature
@@ -145,9 +144,8 @@ export const GameBoard: React.FC = () => {
           ref={player}
         />
       </section>
-      {/* <button onClick={() => setIsModalOpen(!isModalOpen)}>Modal</button> */}
       <Modal open={isModalOpen} onClose={resetGame} buttonText={NEW_GAME} onButtonClick={resetGame}>
-        Congratualtions {winner.winner.name}! You won in {winner.winner.turns} turns and scored {winner.winner.score} points! 🏆
+        Congratualtions {winner.winner.name}! <br />You won in {winner.winner.turns} turns and scored {winner.winner.score} points! 🏆
       </Modal>
       <Button buttonType="button" buttonText={SHOW_RULES} onClickFunction={() => handleSetRules()} />
     </main>

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { GameBoard } from "components";
 
 interface TotalScore {
   playerOne?: number

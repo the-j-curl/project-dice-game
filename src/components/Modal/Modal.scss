@@ -2,7 +2,6 @@
 
 .modal {
   display: flex;
-  height: 60vh;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -11,16 +10,11 @@
   z-index: 1000;
   width: 90%;
 
-  @media (min-width: $mobile-minwidth) {
-    height: 50vh;
-  }
-
   @media (min-width: $tablet-width) {
-    width: 50%;
-    height: 40vh;
+    width: 65%;
   }
 
-  @media (min-width: $desktop-width) {
+  @media (min-width: $large-desktop-width) {
     width: 40%;
     max-width: 820px;
   }
@@ -48,8 +42,13 @@
   justify-content: space-evenly;
   flex-direction: column;
   position: relative;
-  padding: 15px;
+  padding: 20px 10px;
   width: 100%;
+  min-height: 250px;
+
+  @media (min-width: $tablet-width) {
+    // padding: 30px 20px;
+  }
 
   .modal-content {
     font-size: 16px;
@@ -58,8 +57,8 @@
       font-size: 17px;
     }
 
-    @media (min-width: $desktop-width) {
-      font-size: 20px;
+    @media (min-width: $large-desktop-width) {
+      font-size: 18px;
       padding: 20px;
     }
   }

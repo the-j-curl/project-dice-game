@@ -25,4 +25,7 @@ export const SHOW_RULES = 'Show Rules';
 
 // Game Rules
 export const GAME_RULES =
-  'Each player takes it in turns to roll the dice. The player continues to roll the dice until they choose to hold their current score or they roll a one. When you hold your current turn score your points  will be added to your total score. If you roll a one your turn ends. The first player to score 100 or more wins. Good luck!';
+  'Two players take turns to roll a single dice as many times as they wish, adding all roll results to a running total, but losing their gained score for the turn if they roll a 1. The player can choose to hold their turn score which will add the points to the total score. The first player to score 100 or more points wins. Good luck!';
+
+export const GAME_RULES2 =
+  "Two players take turns to repeatedly roll the dice until either a 1 is rolled or the player decides to hold. If the player rolls a 1, they score nothing and it becomes the next player's turn. If the player rolls any other number, it is added to their turn total and the player's turn continues. If a player chooses to 'hold', their turn total is added to their total score, and it becomes the next player's turn. The first player to score 100 or more points wins. Good luck!";

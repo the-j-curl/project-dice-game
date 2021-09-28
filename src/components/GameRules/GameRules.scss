@@ -1,7 +1,7 @@
 @import '../../../src/styles/_config.scss';
 
-.rules-container {
-  h4 {
+.rules {
+  &-header {
     margin: 10px 0;
   }
 }

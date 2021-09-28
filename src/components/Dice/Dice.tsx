@@ -38,7 +38,7 @@ export const Dice: React.FC<DiceProps> = ({ diceRoll }) => {
   return (
     <>
       <div className="dice-wrapper">
-        <img className="dice-image" src={`/assets/${diceImageSrc}`} alt='Dice' />
+        <img className="dice-image" src={`/assets/${diceImageSrc}`} alt="Dice and question mark images from https://www.flaticon.com" />
       </div>
     </>
   );

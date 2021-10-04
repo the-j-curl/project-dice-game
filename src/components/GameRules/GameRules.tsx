@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Modal } from 'components';
-import { GAME_RULES, CLOSE, GAME_RULES2 } from '../../utils/variables'
+import { CLOSE, GAME_RULES2 } from '../../utils/variables'
 import { game } from '../../redux/reducers/game';
 
 import './GameRules.css';

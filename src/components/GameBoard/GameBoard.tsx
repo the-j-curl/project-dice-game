@@ -30,6 +30,7 @@ export const GameBoard: React.FC = () => {
   const [diceRolls, setDiceRolls] = useState<number>(0);
   const [turnCount, setTurnCount] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [diceLoader, setDiceLoader] = useState<boolean>(false);
   const [winner, setWinner] = useState<WinnerData>({
     winner: {
       name: '',
@@ -48,7 +49,7 @@ export const GameBoard: React.FC = () => {
       return;
     }
     // eslint-disable-next-line
-  }, [randomNumber, diceRolls]);
+  }, [diceRolls]);
 
   useEffect(() => {
     if (playerOneScore <= 99 && playerTwoScore <= 99 && isPlayerOneTurn) {
@@ -73,7 +74,6 @@ export const GameBoard: React.FC = () => {
             turns: turnCount
           }
         })
-
       }
     }
     // eslint-disable-next-line
@@ -86,9 +86,17 @@ export const GameBoard: React.FC = () => {
   };
 
   const rollTheDice = (min: number, max: number) => { // TODO: move to helper folder
-    let num = randomNumberGenerator(min, max);
-    setRandomNumber(num);
-    setDiceRolls(diceRolls + 1)
+    setDiceLoader(true)
+    setTimeout(function () {
+      let num = randomNumberGenerator(min, max);
+      setRandomNumber(num);
+      setDiceRolls(diceRolls + 1);
+      setDiceLoader(false);
+
+    }, 600)
+
+
+
   };
 
   const updateTotalScore = (turnScore: number) => {
@@ -132,7 +140,7 @@ export const GameBoard: React.FC = () => {
         <section className="game-content-button-section">
           <Button buttonType="button" buttonText={RESET_GAME} onClickFunction={() => resetGame()} />
           <Button buttonType="button" buttonText={ROLL_DICE} onClickFunction={() => rollTheDice(1, 6)} />
-          <Dice diceRoll={randomNumber} />
+          <Dice diceRoll={randomNumber} loading={diceLoader} />
           <Button buttonType="button" buttonText={HOLD} onClickFunction={() => updateTotalScore(turnScore)} />
         </section>
         <PlayerCard

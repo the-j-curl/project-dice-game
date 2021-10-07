@@ -4,13 +4,14 @@ interface TotalScore {
   playerOne?: number
   playerTwo?: number
 }
-interface Game {
+export interface Game {
   playerOneName: string
   playerTwoName: string
   isPlayerOneTurn: boolean
   isPlayerTwoTurn: boolean
   isRulesOpen: boolean
   totalScore: TotalScore
+  turnCount: number
 }
 interface Action {
   payload: any
@@ -26,6 +27,7 @@ const initialState: Game = {
     playerOne: 0,
     playerTwo: 0,
   },
+  turnCount: 1,
 };
 
 export const game = createSlice({
@@ -53,6 +55,9 @@ export const game = createSlice({
     },
     changeShowRules: (store: Game, action: Action) => {
       store.isRulesOpen = action.payload;
+    },
+    updateTurnCount: (store: Game, action: Action) => {
+      store.turnCount = action.payload;
     },
     resetGame: () => {
       return initialState;

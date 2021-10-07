@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Button, Dice, GameRules, PlayerCard, Modal } from 'components';
-import { game } from '../../redux/reducers/game'
+import { Game, game } from '../../redux/reducers/game'
 import { ROLL_DICE, HOLD, RESET_GAME, NEW_GAME, SHOW_RULES } from 'utils/variables';
 import './GameBoard.css';
 
@@ -17,18 +17,18 @@ interface WinnerData {
 export const GameBoard: React.FC = () => {
   const playerOne = useSelector((store: any) => store.game.playerOneName); // TODO: import Game type and use here **Create Types file**
   const playerTwo = useSelector((store: any) => store.game.playerTwoName); // TODO: import Game type and use here
-  const playerOneScore: number = useSelector((store: any) => store.game.totalScore.playerOne); // TODO: import Game type and use here
-  const playerTwoScore: number = useSelector((store: any) => store.game.totalScore.playerTwo); // TODO: import Game type and use here
-  const isPlayerOneTurn: boolean = useSelector((store: any) => store.game.isPlayerOneTurn); // TODO: import Game type and use here
+  const playerOneScore = useSelector((store: any) => store.game.totalScore.playerOne); // TODO: import Game type and use here
+  const playerTwoScore = useSelector((store: any) => store.game.totalScore.playerTwo); // TODO: import Game type and use here
+  const isPlayerOneTurn = useSelector((store: any) => store.game.isPlayerOneTurn); // TODO: import Game type and use here
   const isPlayerTwoTurn = useSelector((store: any) => store.game.isPlayerTwoTurn); // TODO: import Game type and use here
   const isRulesOpen = useSelector((store: any) => store.game.isRulesOpen); // TODO: import Game type and use here
+  const turnCount = useSelector((store: any) => store.game.turnCount);
   const player = useRef(null);
   const dispatch = useDispatch();
 
   const [randomNumber, setRandomNumber] = useState<number>(0);
   const [turnScore, setTurnScore] = useState<number>(0);
   const [diceRolls, setDiceRolls] = useState<number>(0);
-  const [turnCount, setTurnCount] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [diceLoader, setDiceLoader] = useState<boolean>(false);
   const [winner, setWinner] = useState<WinnerData>({
@@ -42,18 +42,18 @@ export const GameBoard: React.FC = () => {
   useEffect(() => {
     if (randomNumber !== 1) {
       setTurnScore(turnScore + randomNumber);
-    }
+    };
     if (randomNumber === 1) {
       dispatch(game.actions.changeTurn(!isPlayerOneTurn));
       setTurnScore(0);
       return;
-    }
+    };
     // eslint-disable-next-line
   }, [diceRolls]);
 
   useEffect(() => {
-    if (playerOneScore <= 99 && playerTwoScore <= 99 && isPlayerOneTurn) {
-      setTurnCount(turnCount + 1)
+    if (playerOneScore <= 99 && playerTwoScore <= 99 && isPlayerOneTurn && randomNumber !== 0) {
+      dispatch(game.actions.updateTurnCount(turnCount + 1));
     } if (playerOneScore >= 100 || playerTwoScore >= 100) {
       setIsModalOpen(true);
       if (playerOneScore > playerTwoScore) {
@@ -92,11 +92,7 @@ export const GameBoard: React.FC = () => {
       setRandomNumber(num);
       setDiceRolls(diceRolls + 1);
       setDiceLoader(false);
-
-    }, 600)
-
-
-
+    }, 400)
   };
 
   const updateTotalScore = (turnScore: number) => {
@@ -109,7 +105,7 @@ export const GameBoard: React.FC = () => {
     dispatch(game.actions.resetGame());
     setTurnScore(0);
     setRandomNumber(0);
-    setTurnCount(1);
+
     setIsModalOpen(false);
     setWinner({
       winner: {

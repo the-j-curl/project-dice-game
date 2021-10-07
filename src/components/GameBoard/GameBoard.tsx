@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Button, Dice, GameRules, PlayerCard, Modal } from 'components';
-import { Game, game } from '../../redux/reducers/game'
+import { game } from '../../redux/reducers/game'
 import { ROLL_DICE, HOLD, RESET_GAME, NEW_GAME, SHOW_RULES } from 'utils/variables';
 import './GameBoard.css';
 

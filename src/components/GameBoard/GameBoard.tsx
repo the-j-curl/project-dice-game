@@ -54,7 +54,7 @@ export const GameBoard: React.FC = () => {
   useEffect(() => {
     if (playerOneScore <= 99 && playerTwoScore <= 99 && isPlayerOneTurn && randomNumber !== 0) {
       dispatch(game.actions.updateTurnCount(turnCount + 1));
-    } if (playerOneScore >= 10 || playerTwoScore >= 10) {
+    } if (playerOneScore >= 100 || playerTwoScore >= 100) {
       setIsModalOpen(true);
       if (playerOneScore > playerTwoScore) {
         setWinner({

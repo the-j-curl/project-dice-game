@@ -2,15 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Button, Dice, GameRules, PlayerCard, Modal } from 'components';
-import { game } from '../../redux/reducers/game'
+import { game } from '../../redux/reducers/game';
 import { ROLL_DICE, HOLD, RESET_GAME, NEW_GAME, SHOW_RULES } from 'utils/variables';
 import './GameBoard.css';
 
 interface WinnerData {
   winner: {
-    name: string
-    score: number
-    turns: number
+    name: string;
+    score: number;
+    turns: number;
   };
 };
 
@@ -54,7 +54,7 @@ export const GameBoard: React.FC = () => {
   useEffect(() => {
     if (playerOneScore <= 99 && playerTwoScore <= 99 && isPlayerOneTurn && randomNumber !== 0) {
       dispatch(game.actions.updateTurnCount(turnCount + 1));
-    } if (playerOneScore >= 100 || playerTwoScore >= 100) {
+    } if (playerOneScore >= 10 || playerTwoScore >= 10) {
       setIsModalOpen(true);
       if (playerOneScore > playerTwoScore) {
         setWinner({
@@ -63,7 +63,7 @@ export const GameBoard: React.FC = () => {
             score: playerOneScore,
             turns: turnCount
           }
-        })
+        });
 
       } else {
         setIsModalOpen(true);
@@ -73,26 +73,26 @@ export const GameBoard: React.FC = () => {
             score: playerTwoScore,
             turns: turnCount
           }
-        })
+        });
       }
     }
     // eslint-disable-next-line
   }, [isPlayerOneTurn]);
 
-  const randomNumberGenerator = (min: number, max: number) => { // TODO: move to helper folder
+  const randomNumberGenerator = (min: number, max: number): number => { // TODO: move to helper folder
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
   const rollTheDice = (min: number, max: number) => { // TODO: move to helper folder
-    setDiceLoader(true)
+    setDiceLoader(true);
     setTimeout(function () {
       let num = randomNumberGenerator(min, max);
       setRandomNumber(num);
       setDiceRolls(diceRolls + 1);
       setDiceLoader(false);
-    }, 400)
+    }, 400);
   };
 
   const updateTotalScore = (turnScore: number) => {
@@ -113,7 +113,7 @@ export const GameBoard: React.FC = () => {
         score: 0,
         turns: 0
       }
-    })
+    });
   };
 
   const handleSetRules = () => {
@@ -134,10 +134,10 @@ export const GameBoard: React.FC = () => {
           ref={player}
         />
         <section className="game-content-button-section">
-          <Button buttonType="button" buttonText={RESET_GAME} onClickFunction={() => resetGame()} />
-          <Button buttonType="button" buttonText={ROLL_DICE} onClickFunction={() => rollTheDice(1, 6)} />
+          <Button type="button" buttonText={RESET_GAME} buttonStyle="btn-warning-hover" onClickFunction={() => resetGame()} />
+          <Button type="button" buttonText={ROLL_DICE} buttonStyle="btn-primary-solid" onClickFunction={() => rollTheDice(1, 6)} />
           <Dice diceRoll={randomNumber} loading={diceLoader} />
-          <Button buttonType="button" buttonText={HOLD} onClickFunction={() => updateTotalScore(turnScore)} />
+          <Button type="button" buttonText={HOLD} buttonStyle="btn-success-hover" onClickFunction={() => updateTotalScore(turnScore)} />
         </section>
         <PlayerCard
           // playerName={playerTwo} TODO: future feature
@@ -148,10 +148,10 @@ export const GameBoard: React.FC = () => {
           ref={player}
         />
       </section>
-      <Modal open={isModalOpen} onClose={resetGame} buttonText={NEW_GAME} onButtonClick={resetGame}>
+      <Modal open={isModalOpen} onClose={resetGame} buttonText={NEW_GAME} onButtonClick={resetGame} buttonStyle="btn-success-hover">
         Congratualtions {winner.winner.name}! <br />You won in {winner.winner.turns} turns and scored {winner.winner.score} points! 🏆
       </Modal>
-      <Button buttonType="button" buttonText={SHOW_RULES} onClickFunction={() => handleSetRules()} />
+      <Button type="button" buttonText={SHOW_RULES} buttonStyle="btn-secondary-solid" onClickFunction={() => handleSetRules()} />
     </main>
   );
 };

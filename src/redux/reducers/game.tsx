@@ -9,6 +9,7 @@ export interface Game {
   playerTwoName: string
   isPlayerOneTurn: boolean
   isPlayerTwoTurn: boolean
+  isGameStarted: boolean
   isRulesOpen: boolean
   totalScore: TotalScore
   turnCount: number
@@ -22,6 +23,7 @@ const initialState: Game = {
   playerTwoName: 'Player 2',
   isPlayerOneTurn: true,
   isPlayerTwoTurn: false,
+  isGameStarted: false,
   isRulesOpen: false,
   totalScore: {
     playerOne: 0,
@@ -34,12 +36,15 @@ export const game = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    submitPlayerName: (store: Game, action: Action) => {
-      const { playerOne, playerTwo } = action.payload;
-      store.playerOneName = playerOne;
-      store.playerTwoName = playerTwo;
-      localStorage.setItem('playerOne', playerOne);
-      localStorage.setItem('playerTwo', playerTwo);
+    submitPlayerNames: (store: Game, action: Action) => {
+      const { playerOneName, playerTwoName } = action.payload;
+      store.playerOneName = playerOneName;
+      store.playerTwoName = playerTwoName;
+      localStorage.setItem('playerOne', playerOneName);
+      localStorage.setItem('playerTwo', playerTwoName);
+    },
+    gameStarted: (store: Game, action: Action) => {
+      store.isGameStarted = action.payload;
     },
     updateScore: (store: any, action: any) => {
       if (store.isPlayerOneTurn) {

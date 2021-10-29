@@ -4,31 +4,50 @@ import { useDispatch } from 'react-redux';
 import { game } from '../../redux/reducers/game';
 
 type PlayerNameProps = {
-  defaultPlayerName: string
+  defaultPlayerOneName: string
+  defaultPlayerTwoName: string
 };
 
-export const PlayerNameForm: React.FC<PlayerNameProps> = ({ defaultPlayerName }) => {
-  const [playerName, setPlayerName] = useState('');
+export const PlayerNameForm: React.FC<PlayerNameProps> = ({ defaultPlayerOneName, defaultPlayerTwoName }) => {
+  const [playerOneName, setPlayerOneName] = useState('');
+  const [playerTwoName, setPlayerTwoName] = useState('');
+
   const dispatch = useDispatch();
+
   const playerNameMinLength = 1;
   const playerNameMaxLength = 20;
-  const handleOnSubmitName = () => {
-    dispatch(game.actions.submitPlayerName(playerName));
+
+  const handleOnSubmitName = (event: any) => {
+    event.preventDefault();
+    dispatch(game.actions.submitPlayerNames({ playerOneName, playerTwoName }));
+    setPlayerOneName('');
+    setPlayerTwoName('');
   };
 
   return (
     <form onSubmit={handleOnSubmitName}>
-      <label htmlFor="playername">Enter Name: </label>
+      <label htmlFor="playeronename">Enter Name: </label>
       <input
         type="text"
-        name="playername"
+        name="playeronename"
         minLength={playerNameMinLength}
         maxLength={playerNameMaxLength}
-        placeholder={defaultPlayerName}
-        value={playerName}
-        onChange={(event) => setPlayerName(event.target.value)}
+        placeholder={defaultPlayerOneName}
+        value={playerOneName}
+        onChange={(event) => setPlayerOneName(event.target.value)}
       />
-      <button type='submit' disabled={false}>Submit</button>
+      <label htmlFor="playertwoname">Enter Name: </label>
+      <input
+        type="text"
+        name="playertwoname"
+        minLength={playerNameMinLength}
+        maxLength={playerNameMaxLength}
+        placeholder={defaultPlayerTwoName}
+        value={playerTwoName}
+        onChange={(event) => setPlayerTwoName(event.target.value)}
+      />
+      <button type="submit" disabled={false}>Submit</button>
+      <button type="button" disabled={false}>Cancel</button>
     </form>
   );
 };

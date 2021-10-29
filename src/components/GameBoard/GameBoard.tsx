@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Button, Dice, GameRules, PlayerCard, Modal } from 'components';
+import { Button, Dice, GameRules, PlayerCard, Modal, PlayerNameForm } from 'components';
 import { game } from '../../redux/reducers/game';
 import { ROLL_DICE, HOLD, RESET_GAME, NEW_GAME, SHOW_RULES } from 'utils/variables';
 import './GameBoard.css';
@@ -15,14 +15,15 @@ interface WinnerData {
 };
 
 export const GameBoard: React.FC = () => {
-  const playerOne = useSelector((store: any) => store.game.playerOneName); // TODO: import Game type and use here **Create Types file**
-  const playerTwo = useSelector((store: any) => store.game.playerTwoName); // TODO: import Game type and use here
+  const playerOneName = useSelector((store: any) => store.game.playerOneName); // TODO: import Game type and use here **Create Types file**
+  const playerTwoName = useSelector((store: any) => store.game.playerTwoName); // TODO: import Game type and use here
   const playerOneScore = useSelector((store: any) => store.game.totalScore.playerOne); // TODO: import Game type and use here
   const playerTwoScore = useSelector((store: any) => store.game.totalScore.playerTwo); // TODO: import Game type and use here
   const isPlayerOneTurn = useSelector((store: any) => store.game.isPlayerOneTurn); // TODO: import Game type and use here
   const isPlayerTwoTurn = useSelector((store: any) => store.game.isPlayerTwoTurn); // TODO: import Game type and use here
   const isRulesOpen = useSelector((store: any) => store.game.isRulesOpen); // TODO: import Game type and use here
   const turnCount = useSelector((store: any) => store.game.turnCount);
+  const isGameStarted = useSelector((store: any) => store.game.isGameStarted);
   const player = useRef(null);
   const dispatch = useDispatch();
 
@@ -59,7 +60,7 @@ export const GameBoard: React.FC = () => {
       if (playerOneScore > playerTwoScore) {
         setWinner({
           winner: {
-            name: playerOne,
+            name: playerOneName,
             score: playerOneScore,
             turns: turnCount
           }
@@ -69,7 +70,7 @@ export const GameBoard: React.FC = () => {
         setIsModalOpen(true);
         setWinner({
           winner: {
-            name: playerTwo,
+            name: playerTwoName,
             score: playerTwoScore,
             turns: turnCount
           }
@@ -86,6 +87,9 @@ export const GameBoard: React.FC = () => {
   };
 
   const rollTheDice = (min: number, max: number) => { // TODO: move to helper folder
+    if (!isGameStarted) {
+      dispatch(game.actions.gameStarted(true));
+    }
     setDiceLoader(true);
     setTimeout(function () {
       let num = randomNumberGenerator(min, max);
@@ -105,7 +109,6 @@ export const GameBoard: React.FC = () => {
     dispatch(game.actions.resetGame());
     setTurnScore(0);
     setRandomNumber(0);
-
     setIsModalOpen(false);
     setWinner({
       winner: {
@@ -122,12 +125,12 @@ export const GameBoard: React.FC = () => {
 
   return (
     <main className="game">
+      {!isGameStarted && <PlayerNameForm defaultPlayerOneName={playerOneName} defaultPlayerTwoName={playerTwoName} />}
       {isRulesOpen ? <GameRules /> : null}
       <p className="game-turn">Turn to roll: <span>{isPlayerOneTurn ? 'Player One' : 'Player Two'}</span> - Turn number: <span className="game-span">{turnCount}</span></p>
       <section className="game-content">
         <PlayerCard
-          // playerName={playerOne} TODO: future feature
-          defaultPlayerName={playerOne}
+          playerName={playerOneName}
           totalScore={playerOneScore}
           turnScore={isPlayerOneTurn ? turnScore : 0}
           isPlayerTurn={isPlayerOneTurn ? true : false}
@@ -140,8 +143,7 @@ export const GameBoard: React.FC = () => {
           <Button type="button" buttonText={HOLD} buttonStyle="btn-success-hover" onClickFunction={() => updateTotalScore(turnScore)} />
         </section>
         <PlayerCard
-          // playerName={playerTwo} TODO: future feature
-          defaultPlayerName={playerTwo}
+          playerName={playerTwoName}
           totalScore={playerTwoScore}
           turnScore={isPlayerTwoTurn ? turnScore : 0}
           isPlayerTurn={!isPlayerOneTurn ? true : false}

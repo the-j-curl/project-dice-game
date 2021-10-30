@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Button, Dice, GameRules, PlayerCard, Modal, PlayerNameForm } from 'components';
 import { game } from '../../redux/reducers/game';
-import { ROLL_DICE, HOLD, RESET_GAME, NEW_GAME, SHOW_RULES } from 'utils/variables';
+import { ROLL_DICE, HOLD, RESET_GAME, NEW_GAME, SHOW_RULES, CHANGE_NAMES } from 'utils/variables';
 import './GameBoard.css';
 
 interface WinnerData {
@@ -23,14 +23,15 @@ export const GameBoard: React.FC = () => {
   const isPlayerTwoTurn = useSelector((store: any) => store.game.isPlayerTwoTurn); // TODO: import Game type and use here
   const isRulesOpen = useSelector((store: any) => store.game.isRulesOpen); // TODO: import Game type and use here
   const turnCount = useSelector((store: any) => store.game.turnCount);
-  const isGameStarted = useSelector((store: any) => store.game.isGameStarted);
+  // const isGameStarted = useSelector((store: any) => store.game.isGameStarted);
+  const isNameFormOpen = useSelector((store: any) => store.game.isNameChangeOpen);
   const player = useRef(null);
   const dispatch = useDispatch();
 
   const [randomNumber, setRandomNumber] = useState<number>(0);
   const [turnScore, setTurnScore] = useState<number>(0);
   const [diceRolls, setDiceRolls] = useState<number>(0);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // TODO: Rename this to End Game Modal
   const [diceLoader, setDiceLoader] = useState<boolean>(false);
   const [winner, setWinner] = useState<WinnerData>({
     winner: {
@@ -87,9 +88,9 @@ export const GameBoard: React.FC = () => {
   };
 
   const rollTheDice = (min: number, max: number) => { // TODO: move to helper folder
-    if (!isGameStarted) {
-      dispatch(game.actions.gameStarted(true));
-    }
+    // if (!isGameStarted) {
+    //   dispatch(game.actions.gameStarted(true));
+    // }
     setDiceLoader(true);
     setTimeout(function () {
       let num = randomNumberGenerator(min, max);
@@ -123,9 +124,15 @@ export const GameBoard: React.FC = () => {
     dispatch(game.actions.changeShowRules(!isRulesOpen));
   };
 
+  const handleShowNameForm = () => {
+    dispatch(game.actions.changeShowNameForm(!isNameFormOpen))
+  };
+
   return (
     <main className="game">
-      {!isGameStarted && <PlayerNameForm defaultPlayerOneName={playerOneName} defaultPlayerTwoName={playerTwoName} />}
+      {/* <Modal open={!isGameStarted} onClose={handleIsGameStarted} buttonText={NEW_GAME} onButtonClick={resetGame} buttonStyle="btn-success-hover"> */}
+      <PlayerNameForm defaultPlayerOneName={playerOneName} defaultPlayerTwoName={playerTwoName} />
+      {/* </Modal> */}
       {isRulesOpen ? <GameRules /> : null}
       <p className="game-turn">Turn to roll: <span>{isPlayerOneTurn ? 'Player One' : 'Player Two'}</span> - Turn number: <span className="game-span">{turnCount}</span></p>
       <section className="game-content">
@@ -153,7 +160,10 @@ export const GameBoard: React.FC = () => {
       <Modal open={isModalOpen} onClose={resetGame} buttonText={NEW_GAME} onButtonClick={resetGame} buttonStyle="btn-success-hover">
         Congratualtions {winner.winner.name}! <br />You won in {winner.winner.turns} turns and scored {winner.winner.score} points! 🏆
       </Modal>
-      <Button type="button" buttonText={SHOW_RULES} buttonStyle="btn-secondary-solid" onClickFunction={() => handleSetRules()} />
+      <section className="game-lower-buttons">
+        <Button type="button" buttonText={SHOW_RULES} buttonStyle="btn-secondary-solid" onClickFunction={() => handleSetRules()} />
+        <Button type="button" buttonText={CHANGE_NAMES} buttonStyle="btn-secondary-solid" onClickFunction={() => handleShowNameForm()} />
+      </section>
     </main>
   );
 };

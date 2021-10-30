@@ -11,10 +11,10 @@ type ModalProps = {
   onClose: () => any;
   buttonText: string;
   onButtonClick?: () => void;
-  buttonStyle: string;
+  buttonStyle?: string;
 };
 
-export const Modal: React.FC<ModalProps> = ({ open, children, onClose, buttonText, onButtonClick = onClose, buttonStyle }) => {
+export const Modal: React.FC<ModalProps> = ({ open, children, onClose, buttonText, onButtonClick = onClose, buttonStyle = 'btn-primary-solid' }) => {
   if (!open) {
     return null;
   };

@@ -30,7 +30,7 @@ export const PlayerNameForm: React.FC<PlayerNameProps> = ({ defaultPlayerOneName
   };
 
   return (
-    <Modal open={isNameFormOpen} onClose={() => dispatch(game.actions.changeShowNameForm(!isNameFormOpen))} buttonText={CLOSE}>
+    <Modal open={isNameFormOpen} onClose={() => dispatch(game.actions.changeShowNameForm(!isNameFormOpen))} buttonText={CLOSE} hideButton>
       <section className="change-name">
         <h4 className="change-name-heading">Enter Player Names</h4>
         <form className="change-name-form" onSubmit={handleOnSubmitName}>

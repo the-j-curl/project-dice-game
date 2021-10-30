@@ -6,15 +6,16 @@ import { Button } from 'components';
 import './Modal.css';
 
 type ModalProps = {
-  open: boolean;
-  children: any;
-  onClose: () => any;
-  buttonText: string;
-  onButtonClick?: () => void;
-  buttonStyle?: string;
+  open: boolean
+  children: any
+  onClose: () => any
+  buttonText: string
+  onButtonClick?: () => void
+  buttonStyle?: string
+  hideButton?: boolean
 };
 
-export const Modal: React.FC<ModalProps> = ({ open, children, onClose, buttonText, onButtonClick = onClose, buttonStyle = 'btn-primary-solid' }) => {
+export const Modal: React.FC<ModalProps> = ({ open, children, onClose, buttonText, onButtonClick = onClose, buttonStyle = 'btn-primary-solid', hideButton = false }) => {
   if (!open) {
     return null;
   };
@@ -27,7 +28,9 @@ export const Modal: React.FC<ModalProps> = ({ open, children, onClose, buttonTex
               <CgCloseR className="modal-close-btn-icon" />
             </button>
             <p className="modal-content">{children}</p>
-            <Button type="button" buttonText={buttonText} buttonStyle={buttonStyle} onClickFunction={() => onButtonClick()} />
+            {!hideButton &&
+              <Button type="button" buttonText={buttonText} buttonStyle={buttonStyle} onClickFunction={() => onButtonClick()} />
+            }
           </div>
         </div>
       </div>

@@ -28,7 +28,7 @@
       .game-content {
         flex-direction: row;
         justify-content: space-between; } }
-    .game-content-button-section {
+    .game-content-game-buttons {
       display: flex;
       align-items: center;
       justify-content: space-evenly;
@@ -37,19 +37,19 @@
       width: 80%;
       max-width: 450px; }
       @media (min-width: 768px) {
-        .game-content-button-section {
+        .game-content-game-buttons {
           height: 300px;
           width: 20%;
           padding: 0 10px;
           max-width: unset; } }
       @media (min-width: 1024px) {
-        .game-content-button-section {
+        .game-content-game-buttons {
           flex-direction: column;
           align-items: center;
           justify-content: space-around;
           height: 60vh; } }
       @media (min-width: 1200px) {
-        .game-content-button-section {
+        .game-content-game-buttons {
           width: 12%;
           margin: 0 10px;
           height: 55vh; } }

@@ -137,7 +137,7 @@ export const GameBoard: React.FC = () => {
           isPlayerTurn={isPlayerOneTurn ? true : false}
           ref={player}
         />
-        <section className="game-content-button-section">
+        <section className="game-content-game-buttons">
           <Button type="button" buttonText={RESET_GAME} buttonStyle="btn-warning-hover" onClickFunction={() => resetGame()} />
           <Button type="button" buttonText={ROLL_DICE} buttonStyle="btn-primary-solid" onClickFunction={() => rollTheDice(1, 6)} />
           <Dice diceRoll={randomNumber} loading={diceLoader} />

@@ -32,6 +32,10 @@
   .player-name {
     font-size: 35px;
     letter-spacing: 1px;
+    word-break: break-word;
+    inline-size: 90%;
+    display: flex;
+    justify-content: center;
 
     @media (min-width: $desktop-width) {
       font-size: 50px;

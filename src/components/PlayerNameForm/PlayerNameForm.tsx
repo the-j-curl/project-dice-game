@@ -27,6 +27,7 @@ export const PlayerNameForm: React.FC<PlayerNameProps> = ({ defaultPlayerOneName
     dispatch(game.actions.submitPlayerNames({ playerOneName, playerTwoName }));
     setPlayerOneName('');
     setPlayerTwoName('');
+    dispatch(game.actions.changeShowNameForm(!isNameFormOpen));
   };
 
   return (
@@ -58,7 +59,7 @@ export const PlayerNameForm: React.FC<PlayerNameProps> = ({ defaultPlayerOneName
               onChange={(event) => setPlayerTwoName(event.target.value)}
             />
           </label>
-          <button type="submit" disabled={false}>Submit</button>
+          <Button buttonText="Submit" type="submit" onClickFunction={() => handleOnSubmitName} />
         </form>
       </section>
     </Modal>

@@ -2,15 +2,17 @@
   margin: 10px 0; }
 
 .change-name-form {
-  border: 1px solid black;
-  margin: 4px 0;
   padding: 10px;
+  height: 240px;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between; }
   .change-name-form-input {
     margin: 10px 20px;
+    padding: 0 10px;
     height: 34px;
-    width: 200px;
+    width: 87%;
     border: none;
-    padding: 0 0 0 10px;
     background-color: #deeef7; }

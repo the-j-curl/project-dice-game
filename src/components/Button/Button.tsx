@@ -5,11 +5,11 @@ import './Button.css';
 type ButtonType = 'button' | 'submit' | 'reset';
 
 type ButtonProps = {
-  buttonText: string;
-  type: ButtonType;
-  buttonSize?: string;
-  buttonStyle?: string;
-  onClickFunction: () => number | void;
+  buttonText: string
+  type: ButtonType
+  buttonSize?: string
+  buttonStyle?: string
+  onClickFunction: () => any | void
 };
 
 const STYLES = [

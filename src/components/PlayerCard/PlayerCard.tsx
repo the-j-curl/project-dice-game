@@ -15,7 +15,6 @@ export const PlayerCard: React.FC<Props> = ({ playerName, totalScore, turnScore,
 
   return (
     <section className={isPlayerTurn ? "player-card-selected" : "player-card"}>
-      {/* <input ref={playerTurn} /> */}
       <h2 className="player-name">{playerName}</h2>
       <h3 className="score">{totalScore}</h3>
       <div className={isPlayerTurn ? "turn-score-selected" : "turn-score"}>

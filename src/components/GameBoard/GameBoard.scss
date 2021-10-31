@@ -12,6 +12,10 @@
     height: 85vh;
   }
 
+  @media (min-width: $large-desktop-width) {
+    width: 85%;
+  }
+
   &-turn {
     font-size: 17px;
     text-align: center;
@@ -31,6 +35,7 @@
 
     @media (min-width: $tablet-width) {
       flex-direction: row;
+      justify-content: space-between;
     }
 
     &-button-section {
@@ -61,6 +66,14 @@
         margin: 0 10px;
         height: 55vh;
       }
+    }
+  }
+  &-lower-buttons {
+    display: flex;
+    justify-content: space-around;
+
+    @media (min-width: $tablet-width) {
+      justify-content: space-between;
     }
   }
 }

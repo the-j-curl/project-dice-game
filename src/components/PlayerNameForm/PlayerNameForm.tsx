@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal, Button } from 'components';
-import { CLOSE } from '../../utils/variables';
+import { CLOSE, playerNameMinLength, playerNameMaxLength } from '../../utils/variables';
 import { game } from '../../redux/reducers/game';
 
 import './PlayerNameForm.css';
@@ -13,9 +13,6 @@ export const PlayerNameForm: React.FC = () => {
   const [playerTwoName, setPlayerTwoName] = useState('');
 
   const dispatch = useDispatch();
-
-  const playerNameMinLength = 1;
-  const playerNameMaxLength = 20;
 
   const handleOnSubmitName = (event: any) => {
     event.preventDefault();

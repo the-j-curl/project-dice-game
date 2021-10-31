@@ -24,6 +24,10 @@ export const CLOSE = 'Close';
 export const SHOW_RULES = 'Show Rules';
 export const CHANGE_NAMES = 'Change Names';
 
+// Player Name Form
+export const playerNameMinLength = 1;
+export const playerNameMaxLength = 20;
+
 // Game Rules
 export const GAME_RULES =
   'Two players take turns to roll a single dice as many times as they wish, adding all roll results to a running total, but losing their gained score for the turn if they roll a 1. The player can choose to hold their turn score which will add the points to the total score. The first player to score 100 or more points wins. Good luck!';

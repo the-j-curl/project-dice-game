@@ -40,10 +40,14 @@ export const game = createSlice({
   reducers: {
     submitPlayerNames: (store: Game, action: Action) => {
       const { playerOneName, playerTwoName } = action.payload;
-      store.playerOneName = playerOneName || 'Player 1';
-      store.playerTwoName = playerTwoName || 'Player 2';
-      localStorage.setItem('playerOne', playerOneName);
-      localStorage.setItem('playerTwo', playerTwoName);
+      if (playerOneName && playerTwoName) {
+        store.playerOneName = playerOneName;
+        store.playerTwoName = playerTwoName;
+      } if (playerOneName && !playerTwoName) {
+        store.playerOneName = playerOneName;
+      } if (!playerOneName && playerTwoName) {
+        store.playerTwoName = playerTwoName;
+      }
     },
     gameStarted: (store: Game, action: Action) => {
       store.isGameStarted = action.payload;

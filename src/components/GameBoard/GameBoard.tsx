@@ -8,9 +8,9 @@ import './GameBoard.css';
 
 interface WinnerData {
   winner: {
-    name: string;
-    score: number;
-    turns: number;
+    name: string
+    score: number
+    turns: number
   };
 };
 
@@ -23,7 +23,6 @@ export const GameBoard: React.FC = () => {
   const isPlayerTwoTurn = useSelector((store: any) => store.game.isPlayerTwoTurn); // TODO: import Game type and use here
   const isRulesOpen = useSelector((store: any) => store.game.isRulesOpen); // TODO: import Game type and use here
   const turnCount = useSelector((store: any) => store.game.turnCount);
-  // const isGameStarted = useSelector((store: any) => store.game.isGameStarted);
   const isNameFormOpen = useSelector((store: any) => store.game.isNameChangeOpen);
   const player = useRef(null);
   const dispatch = useDispatch();
@@ -128,7 +127,7 @@ export const GameBoard: React.FC = () => {
   return (
     <main className="game">
       <PlayerNameForm />
-      {isRulesOpen ? <GameRules /> : null}
+      <GameRules />
       <p className="game-turn">Turn to roll: <span>{isPlayerOneTurn ? 'Player One' : 'Player Two'}</span> - Turn number: <span className="game-span">{turnCount}</span></p>
       <section className="game-content">
         <PlayerCard
@@ -156,8 +155,8 @@ export const GameBoard: React.FC = () => {
         Congratualtions {winner.winner.name}! <br />You won in {winner.winner.turns} turns and scored {winner.winner.score} points! 🏆
       </Modal>
       <section className="game-lower-buttons">
-        <Button type="button" buttonText={SHOW_RULES} buttonStyle="btn-secondary-solid" onClickFunction={() => handleSetRules()} />
         <Button type="button" buttonText={CHANGE_NAMES} buttonStyle="btn-secondary-solid" onClickFunction={() => handleShowNameForm()} />
+        <Button type="button" buttonText={SHOW_RULES} buttonStyle="btn-secondary-solid" onClickFunction={() => handleSetRules()} />
       </section>
     </main>
   );

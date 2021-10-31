@@ -7,12 +7,7 @@ import { game } from '../../redux/reducers/game';
 
 import './PlayerNameForm.css';
 
-type PlayerNameProps = {
-  defaultPlayerOneName: string
-  defaultPlayerTwoName: string
-};
-
-export const PlayerNameForm: React.FC<PlayerNameProps> = ({ defaultPlayerOneName, defaultPlayerTwoName }) => {
+export const PlayerNameForm: React.FC = () => {
   const isNameFormOpen = useSelector((store: any) => store.game.isNameChangeOpen)
   const [playerOneName, setPlayerOneName] = useState('');
   const [playerTwoName, setPlayerTwoName] = useState('');

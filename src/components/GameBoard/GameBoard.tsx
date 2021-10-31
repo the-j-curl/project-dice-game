@@ -88,9 +88,6 @@ export const GameBoard: React.FC = () => {
   };
 
   const rollTheDice = (min: number, max: number) => { // TODO: move to helper folder
-    // if (!isGameStarted) {
-    //   dispatch(game.actions.gameStarted(true));
-    // }
     setDiceLoader(true);
     setTimeout(function () {
       let num = randomNumberGenerator(min, max);
@@ -130,9 +127,7 @@ export const GameBoard: React.FC = () => {
 
   return (
     <main className="game">
-      {/* <Modal open={!isGameStarted} onClose={handleIsGameStarted} buttonText={NEW_GAME} onButtonClick={resetGame} buttonStyle="btn-success-hover"> */}
-      <PlayerNameForm defaultPlayerOneName={playerOneName} defaultPlayerTwoName={playerTwoName} />
-      {/* </Modal> */}
+      <PlayerNameForm />
       {isRulesOpen ? <GameRules /> : null}
       <p className="game-turn">Turn to roll: <span>{isPlayerOneTurn ? 'Player One' : 'Player Two'}</span> - Turn number: <span className="game-span">{turnCount}</span></p>
       <section className="game-content">

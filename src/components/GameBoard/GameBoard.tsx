@@ -15,13 +15,13 @@ interface WinnerData {
 };
 
 export const GameBoard: React.FC = () => {
-  const playerOneName = useSelector((store: any) => store.game.playerOneName); // TODO: import Game type and use here **Create Types file**
-  const playerTwoName = useSelector((store: any) => store.game.playerTwoName); // TODO: import Game type and use here
-  const playerOneScore = useSelector((store: any) => store.game.totalScore.playerOne); // TODO: import Game type and use here
-  const playerTwoScore = useSelector((store: any) => store.game.totalScore.playerTwo); // TODO: import Game type and use here
-  const isPlayerOneTurn = useSelector((store: any) => store.game.isPlayerOneTurn); // TODO: import Game type and use here
-  const isPlayerTwoTurn = useSelector((store: any) => store.game.isPlayerTwoTurn); // TODO: import Game type and use here
-  const isRulesOpen = useSelector((store: any) => store.game.isRulesOpen); // TODO: import Game type and use here
+  const playerOneName = useSelector((store: any) => store.game.playerOneName); // TODO: import Game types and use here **Create Types file**
+  const playerTwoName = useSelector((store: any) => store.game.playerTwoName); 
+  const playerOneScore = useSelector((store: any) => store.game.totalScore.playerOne); 
+  const playerTwoScore = useSelector((store: any) => store.game.totalScore.playerTwo); 
+  const isPlayerOneTurn = useSelector((store: any) => store.game.isPlayerOneTurn); 
+  const isPlayerTwoTurn = useSelector((store: any) => store.game.isPlayerTwoTurn); 
+  const isRulesOpen = useSelector((store: any) => store.game.isRulesOpen); 
   const turnCount = useSelector((store: any) => store.game.turnCount);
   const isNameFormOpen = useSelector((store: any) => store.game.isNameChangeOpen);
   const player = useRef(null);

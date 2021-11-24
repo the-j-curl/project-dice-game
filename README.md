@@ -16,7 +16,6 @@ Pig is a simple dice game first described in print in 1945. Two players take tur
 ## Features in progress
 
 - Different colour themes
-- Change player name (stored in redux)
 - Types to be fully implemented
 
 ## View it live
